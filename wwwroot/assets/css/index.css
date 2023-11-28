@@ -1,12 +1,26 @@
-body {
-
-}
-
-.alert-danger {
-    display: none;
-}
-
-.login-box {
+#vraagKnop {
     display: flex;
+width: 153px;
+height: 48px;
+padding: 14px 20px 14px 19px;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+border-radius: 8px;
+background: #426B1F;
+}
 
+#zoekbalk {
+    position: relative;
+    bottom: 48px;
+    right: 106px;
+    width: fit-content;
+    float: right;
+}
+
+
+#zoekKnop {
+    position: relative;
+    bottom: 38px;
+    left: 211px;
 }
