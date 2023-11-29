@@ -7,11 +7,19 @@ body {
     padding: 0;
 }
 
-.alert-danger {
-    display: none;
+#zoekbalk {
+    position: relative;
+    bottom: 48px;
+    right: 106px;
+    width: fit-content;
+    float: right;
 }
 
-.login-box {
-    display: flex;
+
+#zoekKnop {
+    position: relative;
+    bottom: 38px;
+    left: 239px;
 
 }
+
