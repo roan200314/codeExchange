@@ -8,12 +8,13 @@
     align-items: center;
     flex-shrink: 0;
     border-radius: 8px;
-    background: #426b1f;
+    background-color: #426b1f;
     text-decoration: none;
 }
+
 .vraagknop:hover {
     color: antiquewhite;
-    background: #102a0a 0.3s ease;
+    background-color: #102a0a 0.3s ease;
 }
 
 #titel {
@@ -26,6 +27,7 @@
     left: 14px;
     top: 16px;
     font-size: 25px;
+    color: red;
 }
 
 #titel1 {
