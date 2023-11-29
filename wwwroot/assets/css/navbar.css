@@ -1,4 +1,4 @@
-.vraagknop {
+#vraagknop {
     color: white;
     display: flex;
     width: 153px;
@@ -12,7 +12,7 @@
     text-decoration: none;
 }
 
-.vraagknop:hover {
+#vraagknop:hover {
     color: antiquewhite;
     background-color: #102a0a 0.3s ease;
 }
