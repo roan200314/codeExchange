@@ -16,7 +16,7 @@
     </head>
 <body>
     <nav class="navbar bg-dark">
-        <a id="titel" class="navbar-brand text-white" href="#">
+        <a id="titel" class="navbar-brand text-white" href="index.html">
             <p id="titel1">Code</p>
             <p id="titelX">X</p>
             <p id="titel2">change</p></a
@@ -27,18 +27,31 @@
     <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label text-dark">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Vul uw email..." aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="email"  placeholder="Vul uw email..." aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-dark">Voornaam</label>
+            <input type="text" class="form-control" id="voornaam" placeholder="Vul uw Voornaam in..">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-dark">Achternaam</label>
+            <input type="text" class="form-control" id="achternaam" placeholder="Vul uw Achternaam in..">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-dark">Gebruikersnaam</label>
+            <input type="text" class="form-control" id="gebruikersnaam" placeholder="Vul uw Gebruikersnaam in..">
+          </div>
+        <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label text-dark">Wachtwoord</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Vul uw Wachtwoord in..">
+          <input type="password" class="form-control" id="wachtwoord" placeholder="Vul uw Wachtwoord in..">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label text-dark">Herhaal Wachtwoord</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Vul uw Wachtwoord in..">
+            <input type="password" class="form-control" id="wachtwoord2" placeholder="Herhaal uw Wachtwoord..">
           </div>
-        <button type="submit" class="btn btn-primary">Registreer</button>
+        <button id="button_registreer" type="submit" class="btn btn-primary" onclick="zetIn()">Registreer</button>
       </form>
     </div>
 </body>
+<script src="../src/registreren.ts" type="module" async></script>
 </html>
