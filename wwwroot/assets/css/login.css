@@ -18,5 +18,16 @@ body {
     border-style: solid;
     border-color: #333;
 }
-
-
+.registreren-btn{
+    position: relative;
+    top: -78px;
+    left: 190px;
+}
+#geen-account{
+    position: relative;
+    top: -26px;
+    left: 30px;
+}
+.login-btn{
+    width: 300px;
+}
