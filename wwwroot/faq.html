@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+    <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!-- Gebruik bootstrap -->
@@ -14,12 +14,51 @@
         <link rel="stylesheet" href="/assets/css/faq.css" />
         <link rel="stylesheet" href="/assets/css/navbar.css" />
     </head>
-<body>
-    <nav class="navbar bg-dark">
-        <a id="titel" class="navbar-brand text-white" href="index.html">
-            <p id="titel1">Code</p>
-            <p id="titelX">X</p>
-            <p id="titel2">change</p></a
-        >
-        </div>
-    </nav>
+    <body>
+        <nav class="navbar bg-dark">
+            <a id="titel" class="navbar-brand text-white" href="index.html">
+                <p id="titel1">Code</p>
+                <p id="titelX">X</p>
+                <p id="titel2">change</p></a
+            >
+            <a id="faq2" class="faq" href="faq.html">FAQ</a>
+            <div class="dropdown">
+                <a
+                    class="btn btn-secondary dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    Mijn account
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="mijngegevens.html">Mijn gegevens</a></li>
+                    <button class="dropdown-item logout-btn" id="logoutButton" type="submit">Logout</button>
+                </ul>
+            </div>
+            <a id="vraagknop" class="ms-5" href="vraagstellen.html">Vraag stellen</a>
+        </nav>
+        <main class="main">
+            <h1 class="titel text-dark">
+                FAQ
+            </h1>
+            <form id="zoekbalk" class="form-inline my-2 my-lg-0">
+                <input
+                    class="form-control mr-sm-2"
+                    type="search"
+                    placeholder="Zoeken..."
+                    aria-label="Search"
+                />
+                <button id="zoekKnop" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    Zoek
+                </button>
+            </form>
+        </main>
+    </body>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+></script>
+</html>
