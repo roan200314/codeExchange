@@ -1,5 +1,8 @@
 #vraagknop {
     color: white;
+    position: relative;
+    right: 60px;
+    top: 2px;
     display: flex;
     width: 153px;
     height: 48px;
@@ -59,7 +62,7 @@
 
 .faq {
     position: relative;
-    left: 269px;
+    left: 289px;
     bottom: -3px;
     text-decoration: none;
     color: white;
@@ -68,6 +71,12 @@
 .faq:hover {
     cursor: pointer;
     color: antiquewhite;
+}
+
+#dropdownid {
+    position: relative;
+    left: 164px;
+    top: 4px;
 }
 
 
