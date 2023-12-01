@@ -1,3 +1,5 @@
+![retro spective](../docs/images/retro1.jpg)
+
 # Retrospective dagje met groepje 
 
 ## Stop:
