@@ -22,3 +22,43 @@ body {
     left: 239px;
 
 }
+
+#titelform {
+    display: flex;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    padding: 10px;
+    width: 800px;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+#vraagform {
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    padding: 10px;
+    width: 800px;
+}
+
+#tagsform {
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    padding: 10px;
+    width: 800px;
+}
+
+.vraag {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#button_vraag {
+    position: relative;
+    right: 334px;
+    top: 10px;
+}
