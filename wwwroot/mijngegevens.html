@@ -54,7 +54,14 @@
         <p><strong>Username:</strong> <span id="userUsername"></span></p>
         <p><strong>Email:</strong> <span id="userEmail"></span></p>
     </div>
-           
+    <div>
+           <!-- Add an input element for file selection -->
+<input type="file" id="profilePictureInput" accept="image/*" style="display: none" />
+
+<!-- Display the profile picture with a clickable behavior -->
+<div id="profilePictureContainer">
+    <img src="/docs/images/AvatarPlaceholder.png" alt="Profile Picture" id="profilePicture" style="cursor: pointer">
+</div>
         
     <script src="../src/mijngegevens.ts" type="module"></script>
 </body>
