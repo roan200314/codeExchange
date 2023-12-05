@@ -2,6 +2,7 @@ import "./config";
 import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
 
+
 /**
  * Deze methode wordt aangeroepen als de pagina is geladen, dat gebeurd helemaal onderin!
  */
