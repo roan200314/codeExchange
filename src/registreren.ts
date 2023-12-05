@@ -13,7 +13,7 @@ async function zetIn(): Promise<void> {
     const wachtwoord2Input: HTMLInputElement | null = document.getElementById("wachtwoord2") as HTMLInputElement;
 
 
-    //variabelen gelijk zetten
+    //vari abelen gelijk zetten
     const email: string = emailInput.value;
     const voornaam: string = voornaamInput.value;
     const achternaam: string = achternaamInput.value;
