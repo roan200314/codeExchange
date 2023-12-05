@@ -50,3 +50,8 @@ Zelfde als OOP word dit in de nieuwe sprints van ons verwacht
 Ik ben er aan gewend om laat in de avond nog steeds aan school te werken maar die tijden gaan niet overeen met mijn duo, dus is het handiger om gewoon eerder er aan te beginnen en dus niet om 22;00
 
 ### Medestudenten: Erdem, Roan & Sabri 1 December 2023
+
+
+(G1)
+
+(G8)
