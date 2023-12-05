@@ -3,8 +3,13 @@ import { runQuery } from "./utils/queryutil";
 const vraag: HTMLButtonElement = document.getElementById("button_vraag") as HTMLButtonElement;
 vraag.addEventListener("click", zetIn);
 
+// Haal alle gebruikers op om weer te geven in een dropdown.
+const resultaat: any[] | undefined = await runQuery("SELECT * FROM user");
+
+const user: any = resultaat[0];
+
 async function zetIn(): Promise<void> {
-    const hoofdTitel: HTMLInputElement = document.getElementById("titel") as HTMLInputElement;
+    const hoofdTitel: HTMLInputElement = document.getElementById("titelVraag") as HTMLInputElement;
     const hoofdVraag: HTMLInputElement = document.getElementById("vraag") as HTMLInputElement;
     const hoofdTags: HTMLInputElement = document.getElementById("tags") as HTMLInputElement;
 
@@ -13,13 +18,14 @@ async function zetIn(): Promise<void> {
     const vraag: string = hoofdVraag.value;
     const tags: string = hoofdTags.value;
 
-    console.log(titel, vraag, tags);
 
-    // if (!email.trim() || !voornaam.trim() || !achternaam.trim() || !wachtwoord.trim() || !wachtwoord2.trim() || !gebruikersnaam.trim()) {
-    //     alert("Een of meerdere gegevens niet ingevuld.");
-    //   } else {
-    //     //insert in de database
-    //       alert("Succesvol registreerd.");
-    //       await runQuery("INSERT INTO user (username, password, email, firstname, lastname) VALUES (?)", [gebruikersnaam, wachtwoord, email, voornaam, achternaam]);
-    //   }
+
+    if (!titel.trim() || !vraag.trim() || !tags.trim()) {
+        alert("Een of meerdere gegevens niet ingevuld.");
+      } else {
+        //insert in de database
+          alert("Succesvol opgestuurd");
+          await runQuery("INSERT INTO posts (user_id, titel, vraag, tags) VALUES (?)", [`${user.id}`, titel, vraag, tags]);
+          console.log(`${user.id}`, titel, vraag, tags);
+      }
 }
