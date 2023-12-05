@@ -9,4 +9,4 @@ export async function runQuery(query: string, params?: Array<any>): Promise<Arra
     }
 
     return undefined;
- }
+}
