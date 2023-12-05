@@ -1,15 +1,33 @@
-import { runQuery } from "./utils/queryutil";
+import "./config";
+import { api, session, url } from "@hboictcloud/api";
+import { User } from "./models/user";
 
-const resultaat: any[] | undefined = await runQuery("SELECT * FROM user");
+const user: User | undefined = await getUserInfo(session.get("user"));
 
-const user: any = resultaat[1];
+if (user) {
+    document.querySelector("#userName")!.innerHTML = user.firstname + " " + user.lastname;
+    document.querySelector("#userUsername")!.innerHTML = user.username;
+    document.querySelector("#userEmail")!.innerHTML = user.email;
+}
 
-const data:HTMLElement | null = document.getElementById("userInfo");
+async function getUserInfo(userid: number): Promise<User | undefined> {
+    try {
+        const data: any = await api.queryDatabase("SELECT * FROM user WHERE id = ?", userid);
 
-const div: HTMLElement | null = document.createElement("div");
+        if (data.length > 0) {
+            const user: User = new User(
+                data[0]["id"],
+                data[0]["username"],
+                data[0]["email"],
+                data[0]["firstname"],
+                data[0]["lastname"]
+            );
+            return user;
+        }
+        return undefined;
+    } catch (error) {
+        console.error(error);
 
-const paragraaf:HTMLElement | null = document.createElement("input");
-paragraaf.value = `${user.username}`;
-
-div.appendChild(paragraaf);
-data?.appendChild(div);
+        return undefined;
+    }
+}
