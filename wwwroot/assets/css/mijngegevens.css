@@ -36,8 +36,15 @@ body {
     background-color: #343a40; 
     padding: 20px;
     border-radius: 10px; 
+
 }
 
 .box {
     text-align: center;
+}
+#editButton{
+    position: relative;
+    bottom: 3px;
+    left: -122px;
+
 }

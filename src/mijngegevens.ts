@@ -2,12 +2,16 @@ import "./config";
 import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
 
-const user: User | undefined = await getUserInfo(session.get("user"));
 
-if (user) {
-    document.querySelector("#userName")!.innerHTML = user.firstname + " " + user.lastname;
-    document.querySelector("#userUsername")!.innerHTML = user.username;
-    document.querySelector("#userEmail")!.innerHTML = user.email;
+async function setUserValues(): Promise<void> {
+    const user: User | undefined = await getUserInfo(session.get("user"));
+
+    if (user) {
+        document.querySelector("#userName")!.innerHTML = user.firstname + " " + user.lastname;
+        document.querySelector("#userUsername")!.innerHTML = user.username;
+        document.querySelector("#userEmail")!.innerHTML = user.email;
+    }
+
 }
 
 async function getUserInfo(userid: number): Promise<User | undefined> {
@@ -29,5 +33,13 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
         console.error(error);
 
         return undefined;
-    }
+    }   
 }
+
+setUserValues();
+
+
+
+
+
+
