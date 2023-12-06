@@ -1,79 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!-- Gebruik bootstrap -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-        <title>Code Xchange</title>
-        <link rel="stylesheet" href="/assets/css/mijngegevens.css" />
-        <link rel="stylesheet" href="/assets/css/navbar.css" />
 
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/pics/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/pics/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest" />
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Gebruik bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+    />
+    <title>Code Xchange</title>
+    <link rel="stylesheet" href="/assets/css/mijngegevens.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/pics/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/pics/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest" />
+
+   
+</head>
+
 <body>
     <nav class="navbar bg-dark">
         <a id="titel" class="navbar-brand text-white" href="index.html">
             <p id="titel1">Code</p>
             <p id="titelX">X</p>
-            <p id="titel2">change</p></a
-        >
+            <p id="titel2">change</p>
+        </a>
         <a id="faq2" class="faq" href="faq.html">FAQ</a>
         <div id="dropdownid" class="dropdown">
-            <a
-                class="btn btn-secondary dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-            >
+            <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Mijn account
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="mijngegevens.html">Mijn gegevens</a></li>
-                <button
-                class="dropdown-item logout-btn"
-                id="logoutButton"
-                type="submit"
-            >
-                Logout
-            </button>
+                <button class="dropdown-item logout-btn" id="logoutButton" type="submit">
+                    Logout
+                </button>
             </ul>
         </div>
         <a id="vraagknop" class="ms-5" href="vraagstellen.html">Vraag stellen</a>
     </nav>
 
-       <div id="userInfo">
-        <p><strong>Name:</strong> <span id="userName"></span></p>
-        <p><strong>Username:</strong> <span id="userUsername"></span></p>
-        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+    <div class="container vh-100">
+        <div class="user-info-container box">
+            <div id="userInfo">
+                <p><strong>Name:</strong> <span id="userName" contenteditable="false"></span></p>
+                <p><strong>Username:</strong> <span id="userUsername" contenteditable="false"></span></p>
+                <p><strong>Email:</strong> <span id="userEmail" contenteditable="false"></span></p>
+                <p><strong>Expertise:</strong> <span id="userExpertise" contenteditable="false"></span></p>
+                <p><strong>Geboortedatum:</strong> <span id="userDateOfBirth" contenteditable="false"></span></p>
+                <p><strong>Jaren ervaring:</strong> <span id="userYearsOfExperience" contenteditable="false"></span></p>
+                
+                <button id="saveButton" style="display: none;">Save Changes</button>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" id="editButton" type="submit">Edit</button>
+            <button class="btn btn-success btn-lg btn-block" id="saveButton" style="display: none;" type="submit">Save Changes</button>
+        </div>
     </div>
-    <div>
-           <!-- Add an input element for file selection -->
-<input type="file" id="profilePictureInput" accept="image/*" style="display: none" />
 
-<!-- Display the profile picture with a clickable behavior -->
-<div id="profilePictureContainer">
-    <img src="/docs/images/CodeXChange/AvatarPlaceholder.png" alt="Profile Picture" id="profilePicture" style="cursor: pointer">
-</div>
-        
     <script src="../src/mijngegevens.ts" type="module"></script>
 </body>
 
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-crossorigin="anonymous"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </html>
 
-// TO DO 
+
+<!-- TO DO 
 Afbeelding
 Username
 E-mail
@@ -81,4 +78,4 @@ First and Lastname
 Expertise kunnen toevoegen op de pagina
 Aantal jaren programmeerervaring kunnen toevoegen
 Geboortedatum van de gebruiker kunnen toevoegen
-ALLES moet aangepast kunnen worden // 
+ALLES moet aangepast kunnen worden -->
