@@ -38,13 +38,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="mijngegevens.html">Mijn gegevens</a></li>
-                    <button
-                    class="dropdown-item logout-btn"
-                    id="logoutButton"
-                    type="submit"
-                >
-                    Logout
-                </button>
+                    <button class="dropdown-item logout-btn" id="logoutButton" type="submit">Logout</button>
                 </ul>
             </div>
             <a id="vraagknop" class="ms-5" href="vraagstellen.html">Vraag stellen</a>
@@ -66,24 +60,28 @@
             </form>
             <form>
                 <div class="vraag">
-                <div id="titelform" class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label text-dark">Titel</label>
-                  <input type="text" class="form-control" id="titelVraag" placeholder="Vul de titel van je vraag in..">
+                    <div id="titelform" class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label text-dark">Titel</label>
+                        <input type="text" class="form-control" id="titelVraag" placeholder="Vul de titel van je vraag in..">
+                    </div>
+                    <div id="vraagform" class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label text-dark">Wat is je vraag?</label>
+                        <textarea class="form-control" id="vraag" placeholder=""></textarea>
+                        <button type="button" class="btn btn-secondary mt-2" onclick="insertCodeSnippet()">Voeg code snippet toe</button>
+                    </div>
+                    <div id="tagsform" class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label text-dark">Tags</label>
+                        <input type="text" class="form-control" id="tags" placeholder="bijvoorbeeld: Typescript, CSS, C# etc.">
+                    </div>
+                    <button id="button_vraag" type="button" class="btn btn-primary" onclick="zetIn()">Stuur vraag op</button>
                 </div>
-                <div id="vraagform" class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label text-dark">Wat is je vraag?</label>
-                    <textarea class="form-control" id="vraag" placeholder=""></textarea>
-                  </div>
-                  <div id="tagsform" class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label text-dark">tags</label>
-                    <input type="text" class="form-control" id="tags" placeholder="bijvoorbeeld: Typescript, CSS, C# etc.">
-                  </div>
-                  <button id="button_vraag" type="submit" class="btn btn-primary" onclick="zetIn()">Stuur vraag op</button>
-                </form>
+            </form>
+            
               </div>
         </main>
     </body>
     <script src="../src/vraagstellen.ts" type="module" async></script>
+    <script src="/src/index.ts" type="module"></script>
     <script
 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

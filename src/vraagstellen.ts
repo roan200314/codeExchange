@@ -7,6 +7,7 @@ vraag.addEventListener("click", zetIn);
 
 const user: User | undefined = await getUserInfo(session.get("user"));
 
+
 async function zetIn(): Promise<void> {
     const hoofdTitel: HTMLInputElement = document.getElementById("titelVraag") as HTMLInputElement;
     const hoofdVraag: HTMLInputElement = document.getElementById("vraag") as HTMLInputElement;
