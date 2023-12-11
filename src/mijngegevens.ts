@@ -70,9 +70,32 @@ editButton.addEventListener("click", toggleEditMode);
 
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
- 
+    // Get the edited values from the contenteditable elements or input fields
+    const editedGeboortedatum: string | undefined = document.getElementById("userDateOfBirth")?.textContent;
+    const editedJaarervaring: string | undefined = document.getElementById("userYearsOfExperience")?.textContent;
+    const editedExpertise: string | undefined = document.getElementById("userExpertise")?.textContent;
+
+    // Perform validation and handle empty values if needed
+
+    // Assuming you have the user's ID stored in a variable named userId
+    const userId: number | undefined = session.get("user");
+
+    if (userId !== undefined && editedGeboortedatum !== undefined && editedJaarervaring !== undefined && editedExpertise !== undefined) {
+        // Update the database with the new values
+        await runQuery(
+            "UPDATE user SET geboortedatum = ?, jaarervaring = ?, expertise = ? WHERE id = ?",
+            [editedGeboortedatum, editedJaarervaring, editedExpertise, userId]
+        );
+
+        // Update the displayed values on the page
+        document.getElementById("userDateOfBirth")!.textContent = editedGeboortedatum;
+        document.getElementById("userYearsOfExperience")!.textContent = editedJaarervaring;
+        document.getElementById("userExpertise")!.textContent = editedExpertise;
+    }
+
     toggleEditMode();
 });
+
 
 // Add event listener to the profile picture for opening file input
 const userProfilePicture: HTMLImageElement = document.getElementById("userProfilePicture") as HTMLImageElement;
