@@ -64,7 +64,6 @@ editButton.addEventListener("click", toggleEditMode);
 
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
-    // Save the edited values to the database (you need to implement this part)
-    // For simplicity, this example only toggles the edit mode
+  
     toggleEditMode();
 });
