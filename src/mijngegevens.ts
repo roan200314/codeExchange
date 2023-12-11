@@ -1,9 +1,13 @@
+// Importeer de runQuery functie uit het queryutil bestand
+import { runQuery } from "./utils/queryutil";
 import "./config";
 import { api, session } from "@hboictcloud/api";
 import { User } from "./models/user";
 
+
 const editButton: HTMLButtonElement = document.getElementById("editButton") as HTMLButtonElement;
 const saveButton: HTMLButtonElement = document.getElementById("saveButton") as HTMLButtonElement;
+const profilePictureInput: HTMLInputElement = document.getElementById("profilePictureInput") as HTMLInputElement;
 
 // Function to toggle edit mode
 function toggleEditMode(): void {
@@ -28,6 +32,7 @@ async function setUserValues(): Promise<void> {
         document.getElementById("userExpertise")!.textContent = user.expertise || "";
         document.getElementById("userDateOfBirth")!.textContent = user.dateOfBirth || "";
         document.getElementById("userYearsOfExperience")!.textContent = user.yearsOfExperience?.toString() || "";
+        document.getElementById("userProfilePicture")!.src = user.profilePicture || "";
     }
 }
 
@@ -45,7 +50,8 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
                 data[0]["lastname"],
                 data[0]["expertise"],
                 data[0]["dateOfBirth"],
-                data[0]["yearsOfExperience"]
+                data[0]["yearsOfExperience"],
+                data[0]["profilePicture"]
             );
             return user;
         }
@@ -64,6 +70,22 @@ editButton.addEventListener("click", toggleEditMode);
 
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
-  
+ 
     toggleEditMode();
+});
+
+// Add event listener to the profile picture for opening file input
+const userProfilePicture: HTMLImageElement = document.getElementById("userProfilePicture") as HTMLImageElement;
+userProfilePicture.addEventListener("click", () => {
+    profilePictureInput.click();
+});
+
+// Add event listener to the file input for handling file selection
+profilePictureInput.addEventListener("change", async (): Promise<void> => {
+    const selectedFile: File | undefined = profilePictureInput.files?.[0];
+
+    if (selectedFile) {
+    
+        console.log("Selected file:", selectedFile);
+    }
 });

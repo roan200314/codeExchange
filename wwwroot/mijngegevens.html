@@ -45,13 +45,15 @@
     <div class="container vh-100">
         <div class="user-info-container box">
             <div id="userInfo">
+                <img id="userProfilePicture" src="/images/CodeXChange/AvatarPlaceholder.png" alt="Profile Picture clickable" style="cursor: pointer; max-width: 100%; height: auto;">
+                <input type="file" id="profilePictureInput" style="display: none;"> <!-- Hidden file input element -->
                 <p><strong>Name:</strong> <span id="userName" contenteditable="false"></span></p>
                 <p><strong>Username:</strong> <span id="userUsername" contenteditable="false"></span></p>
                 <p><strong>Email:</strong> <span id="userEmail" contenteditable="false"></span></p>
                 <p><strong>Expertise:</strong> <span id="userExpertise" contenteditable="false"></span></p>
                 <p><strong>Geboortedatum:</strong> <span id="userDateOfBirth" contenteditable="false"></span></p>
                 <p><strong>Jaren ervaring:</strong> <span id="userYearsOfExperience" contenteditable="false"></span></p>
-
+        
                 <button class="btn btn-primary btn-lg btn-block" id="editButton" type="button">Edit</button>
                 <button class="btn btn-success btn-lg btn-block" id="saveButton" style="display: none;" type="button">Save Changes</button>
             </div>
