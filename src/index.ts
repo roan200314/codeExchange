@@ -75,11 +75,16 @@ const data: HTMLElement | null = document.getElementById("data");
 async function laatZien(): Promise<void> {
     // De gegevens uit de database ophalen
     const resultaat: any[] | undefined = await runQuery("SELECT * FROM posts");
-    const uitjeDB: any = resultaat[0];
+    const resultaat2: any[] | undefined = await runQuery("SELECT * FROM answers");
+    const posts: any = resultaat[0];
+    const answers: any = resultaat[0];
+
 
     // De gegevens weergeven in de div
     if (resultaat && resultaat.length > 0) {
-        resultaat.forEach((row: any) => {
+        resultaat.forEach((posts: any) => {
+
+
             const div: HTMLElement | null = document.createElement("div");
             div.className = "allePosts";
 
@@ -90,36 +95,36 @@ async function laatZien(): Promise<void> {
             // Een paragraaf om de naam van het uitje weer te geven
             const titel: HTMLElement | null = document.createElement("p");
             titel.id = "postTitel";
-            titel.textContent = `titel: ${row.titel}`;
+            titel.innerText = `titel: ${posts.titel}`;
             titel.style.color = "black";
             // De tekst voor de knop om aan een uitje deel te nemen
-            bekijkVraagKnop.textContent = "Bekijk de vraag";
+            bekijkVraagKnop.innerText = "Bekijk de vraag";
 
             // Een paragraaf om de prijs van het uitje weer te geven
             const vraag: HTMLElement | null = document.createElement("p");
             vraag.id = "postVraag";
-            vraag.textContent = `Vraag: ${row.vraag}`;
+            vraag.innerText = `Vraag: ${posts.vraag}`;
             vraag.style.marginLeft = "10px";
             vraag.style.color = "black";
 
             // Een paragraaf om de prijs van het uitje weer te geven
             const naam: HTMLElement | null = document.createElement("p");
             naam.id = "postNaam";
-            naam.textContent = `Naam van vraagsteller: ${row.user_id}`;
+            naam.innerText = `Naam van vraagsteller: ${posts.user_id}`;
             naam.style.marginLeft = "10px";
             naam.style.color = "black";
 
             // Een paragraaf om de prijs van het uitje weer te geven
             const datum: HTMLElement | null = document.createElement("p");
             datum.id = "postTijd";
-            datum.textContent = `datum van vraag: ${row.tijd}`;
+            datum.innerText = `datum van vraag: ${posts.tijd}`;
             datum.style.marginLeft = "10px";
             datum.style.color = "black";
 
             // Een paragraaf om de prijs van het uitje weer te geven
             const antwoorden: HTMLElement | null = document.createElement("p");
             antwoorden.id = "postAntwoorden";
-            antwoorden.textContent = `aantal antwoorden: ${row.tijd}`;
+            antwoorden.in = `aantal antwoorden: ${posts.tijd}`;
             antwoorden.style.marginLeft = "10px";
             antwoorden.style.color = "black";
 
@@ -134,10 +139,11 @@ async function laatZien(): Promise<void> {
         });
     } else {
         // Een bericht weergeven als er geen gegevens zijn
-        data.textContent = "Geen gegevens gevonden";
+        data.innerText = "Geen gegevens gevonden";
     }
 }
 laatZien();
+
 
 // Run bij het opstarten de setup functie
 await setup();
