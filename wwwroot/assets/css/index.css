@@ -20,6 +20,11 @@ body {
     position: relative;
     bottom: 38px;
     left: 220px;
+}
 
+.allePosts {
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
 }
 
