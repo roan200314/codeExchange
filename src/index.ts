@@ -62,11 +62,15 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
  */
 function logout(): void {
     // Verwijder de sessies
+    const uitloggen: any = confirm("Weet u zeker dat u wilt uitloggen?");
+    if (uitloggen === true) {
     session.remove("user");
 
     // Stuur de gebruiker door naar de login pagina
     url.redirect("login.html");
+    }
 }
+
 
 //////////vragen op scherm laten zien
 // Het element waarin de gegevens worden weergegeven selecteren
