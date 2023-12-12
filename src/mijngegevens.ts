@@ -24,6 +24,7 @@ function toggleEditMode(): void {
 // Function to set user values
 async function setUserValues(): Promise<void> {
     const user: User | undefined = await getUserInfo(session.get("user"));
+    console.log(User);
 
     if (user) {
         document.getElementById("userName")!.textContent = user.firstname + " " + user.lastname;
@@ -68,6 +69,7 @@ setUserValues();
 // Add event listener to the edit button
 editButton.addEventListener("click", toggleEditMode);
 
+
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
     // Get the edited values from the contenteditable elements or input fields
@@ -76,15 +78,15 @@ saveButton.addEventListener("click", async (): Promise<void> => {
     const editedExpertise: string | undefined = document.getElementById("userExpertise")?.textContent;
 
    
-
+    const userId: number | undefined = session.get("user");
    
 
-    const userId: number | undefined = session.get("user"); 
+
 
     if (userId !== undefined && editedGeboortedatum !== undefined && editedJaarervaring !== undefined && editedExpertise !== undefined) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET geboortedatum = (?), jaar_ervaring = (?), expertise = (?) WHERE id = (?)",
+            "UPDATE user SET geboortedatum = ?, jaar_ervaring = ?, expertise = ? WHERE id = ?",
             [editedGeboortedatum, editedJaarervaring, editedExpertise, userId]
         );
 
@@ -97,7 +99,6 @@ saveButton.addEventListener("click", async (): Promise<void> => {
     toggleEditMode();
 });
 
-
 // Add event listener to the profile picture for opening file input
 const userProfilePicture: HTMLImageElement = document.getElementById("userProfilePicture") as HTMLImageElement;
 userProfilePicture.addEventListener("click", () => {
@@ -109,7 +110,20 @@ profilePictureInput.addEventListener("change", async (): Promise<void> => {
     const selectedFile: File | undefined = profilePictureInput.files?.[0];
 
     if (selectedFile) {
-    
-        console.log("Selected file:", selectedFile);
+        
+        const userId: number | undefined = session.get("user");
+
+        if (userId !== undefined) {
+            // Upload the selected file and update the database
+            await runQuery(
+                "UPDATE user SET profilePicture = (?) WHERE id = (?)",
+                [selectedFile.name, userId]
+            );
+
+            // Update the displayed values on the page
+            document.getElementById("userProfilePicture")!.src = URL.createObjectURL(selectedFile);
+
+            console.log("Selected file:", selectedFile);
+        }
     }
 });
