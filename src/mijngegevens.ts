@@ -24,16 +24,17 @@ function toggleEditMode(): void {
 // Function to set user values
 async function setUserValues(): Promise<void> {
     const user: User | undefined = await getUserInfo(session.get("user"));
-    console.log(User);
 
     if (user) {
         document.getElementById("userName")!.textContent = user.firstname + " " + user.lastname;
         document.getElementById("userUsername")!.textContent = user.username;
         document.getElementById("userEmail")!.textContent = user.email;
-        document.getElementById("userExpertise")!.textContent = user.expertise || "";
-        document.getElementById("userDateOfBirth")!.textContent = user.dateOfBirth || "";
-        document.getElementById("userYearsOfExperience")!.textContent = user.yearsOfExperience?.toString() || "";
-        document.getElementById("userProfilePicture")!.src = user.profilePicture || "";
+        const tijd: any = user.birth_year;
+        document.getElementById("userDateOfBirth")!.textContent = tijd;
+        document.getElementById("userExpertise")!.textContent = user.expertise;
+        document.getElementById("userYearsOfExperience")!.textContent = user.years_experience;
+        document.getElementById("userProfilePicture")!.src = user.profile_picture;
+        console.log(tijd);
     }
 }
 
@@ -69,26 +70,23 @@ setUserValues();
 // Add event listener to the edit button
 editButton.addEventListener("click", toggleEditMode);
 
-
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
-    // Get the edited values from the input fields
-    const editedGeboortedatum: string | undefined = document.getElementById("userDateOfBirth")?.textContent;
-    const editedJaarervaring: string | undefined = document.getElementById("userYearsOfExperience")?.textContent;
-    const editedExpertise: string | undefined = document.getElementById("userExpertise")?.textContent;
+    // Get the edited values from the contenteditable elements or input fields
+    const editedGeboortedatum: HTMLElement | null = document.getElementById("userDateOfBirth")?.textContent;
+    const editedJaarervaring: HTMLElement | null = document.getElementById("userYearsOfExperience")?.textContent;
+    const editedExpertise: HTMLElement | null = document.getElementById("userExpertise")?.textContent;
 
-   
+    // Perform validation and handle empty values if needed
+
+    // Assuming you have the user's ID stored in a variable named userId
     const userId: number | undefined = session.get("user");
-    
-   
-
-
 
     if (userId !== undefined && editedGeboortedatum !== undefined && editedJaarervaring !== undefined && editedExpertise !== undefined) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET geboortejaar = ?, jaar_ervaring = ?, expertise = ? WHERE id =  ?", [ editedGeboortedatum, editedJaarervaring, editedExpertise ,userId]
-            
+            "UPDATE user SET geboortedatum = ?, jaarervaring = ?, expertise = ? WHERE id = ?",
+            [editedGeboortedatum, editedJaarervaring, editedExpertise, userId]
         );
 
         // Update the displayed values on the page
@@ -99,6 +97,7 @@ saveButton.addEventListener("click", async (): Promise<void> => {
 
     toggleEditMode();
 });
+
 
 // Add event listener to the profile picture for opening file input
 const userProfilePicture: HTMLImageElement = document.getElementById("userProfilePicture") as HTMLImageElement;
@@ -111,20 +110,7 @@ profilePictureInput.addEventListener("change", async (): Promise<void> => {
     const selectedFile: File | undefined = profilePictureInput.files?.[0];
 
     if (selectedFile) {
-        
-        const userId: number | undefined = session.get("user");
-
-        if (userId !== undefined) {
-            // Upload the selected file and update the database
-            await runQuery(
-                "UPDATE user SET profilePicture = (?) WHERE id = (?)",
-                [selectedFile.name, userId]
-            );
-
-            // Update the displayed values on the page
-            document.getElementById("userProfilePicture")!.src = URL.createObjectURL(selectedFile);
-
-            console.log("Selected file:", selectedFile);
-        }
+    
+        console.log("Selected file:", selectedFile);
     }
 });

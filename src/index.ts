@@ -49,7 +49,12 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
                 data[0]["username"],
                 data[0]["email"],
                 data[0]["firstname"],
-                data[0]["lastname"]
+                data[0]["lastname"],
+                data[0]["birth_year"],
+                data[0]["expertise"],
+                data[0]["years_experience"],
+                data[0]["profile_picture"]
+
             );
             return user;
         }
@@ -110,7 +115,7 @@ const data: HTMLElement | null = document.getElementById("data");
 
 async function laatZien(): Promise<void> {
     // De gegevens uit de database ophalen
-    const posts: any[] | undefined = await runQuery("SELECT * FROM posts");
+    const posts: any[] | undefined = await runQuery("SELECT * FROM posts ORDER BY tijd DESC");
     const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers");
     const users: any[] | undefined = await runQuery("SELECT * FROM user");
 

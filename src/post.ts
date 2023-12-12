@@ -26,10 +26,16 @@ async function setup(): Promise<void> {
 
     const div: HTMLElement | null = document.createElement("div");
 
+    const titel: HTMLElement | null = document.createElement("p");
+    titel.innerText = post?.titel ?? "Default Value";
+    titel.style.color = "black";
+
     const vraag: HTMLElement | null = document.createElement("p");
+    vraag.id = "vraag";
     vraag.innerText = post?.vraag ?? "Default Value";
     vraag.style.color = "black";
 
+    div.appendChild(titel);
     div.appendChild(vraag);
 
     data?.appendChild(div);
