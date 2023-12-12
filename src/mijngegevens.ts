@@ -72,7 +72,7 @@ editButton.addEventListener("click", toggleEditMode);
 
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
-    // Get the edited values from the contenteditable elements or input fields
+    // Get the edited values from the input fields
     const editedGeboortedatum: string | undefined = document.getElementById("userDateOfBirth")?.textContent;
     const editedJaarervaring: string | undefined = document.getElementById("userYearsOfExperience")?.textContent;
     const editedExpertise: string | undefined = document.getElementById("userExpertise")?.textContent;
