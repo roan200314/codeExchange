@@ -75,15 +75,16 @@ saveButton.addEventListener("click", async (): Promise<void> => {
     const editedJaarervaring: string | undefined = document.getElementById("userYearsOfExperience")?.textContent;
     const editedExpertise: string | undefined = document.getElementById("userExpertise")?.textContent;
 
-    // Perform validation and handle empty values if needed
+   
 
-    // Assuming you have the user's ID stored in a variable named userId
-    const userId: number | undefined = session.get("user");
+   
+
+    const userId: number | undefined = session.get("user"); 
 
     if (userId !== undefined && editedGeboortedatum !== undefined && editedJaarervaring !== undefined && editedExpertise !== undefined) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET geboortedatum = ?, jaarervaring = ?, expertise = ? WHERE id = ?",
+            "UPDATE user SET geboortedatum = (?), jaar_ervaring = (?), expertise = (?) WHERE id = (?)",
             [editedGeboortedatum, editedJaarervaring, editedExpertise, userId]
         );
 
