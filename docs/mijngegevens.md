@@ -157,7 +157,7 @@ De HTML-elementen zijn ontworpen om een overzichtelijke gebruikersinterface te b
         );
 
         // Update the displayed values on the page
-
+        
         document.getElementById("userDateOfBirth")!.textContent = editedGeboortedatum;
         document.getElementById("userYearsOfExperience")!.textContent = editedJaarervaring;
         document.getElementById("userExpertise")!.textContent = editedExpertise;
@@ -168,10 +168,6 @@ De HTML-elementen zijn ontworpen om een overzichtelijke gebruikersinterface te b
 
   ```
 </details>
-
-- userProfilePicture.addEventListener("click"): Deze event listener opent het bestandsinvoerdialog wanneer er op de profielfoto wordt geklikt.
-
-- profilePictureInput.addEventListener("change"): Hiermee wordt een event listener toegevoegd aan het invoerveld voor profielfoto's. Het wordt geactiveerd wanneer een bestand is geselecteerd en werkt bij het uploaden van de profielfoto.
 
 ## Bewerken van Gebruikersprofiel
 
