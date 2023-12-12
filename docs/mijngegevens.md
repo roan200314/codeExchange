@@ -1,0 +1,44 @@
+
+Deze functionaliteit stelt gebruikers in staat om hun profielgegevens te bekijken, bewerken en hun profielfoto's te beheren. Hieronder staan de belangrijkste onderdelen.
+
+
+ ## Gebruikersinterface
+
+De HTML-elementen zijn ontworpen om een overzichtelijke gebruikersinterface te bieden met interactieve functies. Hier is een korte beschrijving van enkele elementen:
+
+- <details> <summary> editButton, saveButton: Knoppen om tussen de bewerkmodus te schakelen en wijzigingen op te slaan. 
+    </summary>
+
+  ```
+    editButton.style.display = editButton.style.display === "none" ? "block" : "none";
+    saveButton.style.display = saveButton.style.display === "none" ? "block" : "none";
+  ```
+    </details>
+
+-  profilePictureInput: Een invoerveld voor het selecteren van een profielfoto.
+
+-  userProfilePicture: Een klikbare afbeelding die de profielfoto vertegenwoordigt.
+
+## TypeScript-code
+
+- toggleEditMode(): Deze functie schakelt de bewerkmodus in en uit door de contentEditable-attributen van de velden te wijzigen. Het zorgt ook voor de zichtbaarheid van de bewerk- en opslaan-knoppen.
+
+- setUserValues(): Deze functie haalt de gebruikersgegevens op vanuit de backend-API en vult de HTML-elementen in met de ontvangen informatie.
+
+- getUserInfo(userid): Een asynchrone functie om gebruikersinformatie op te halen op basis van de gebruikers-id. Het gebruikt de api.queryDatabase-functie om een databasequery uit te voeren.
+
+- saveButton.addEventListener("click"): Een event listener die wordt geactiveerd wanneer de gebruiker op de opslaan-knop klikt. Het haalt de bewerkte waarden op en update de database met behulp van de runQuery-functie.
+
+- userProfilePicture.addEventListener("click"): Deze event listener opent het bestandsinvoerdialog wanneer er op de profielfoto wordt geklikt.
+
+- profilePictureInput.addEventListener("change"): Hiermee wordt een event listener toegevoegd aan het invoerveld voor profielfoto's. Het wordt geactiveerd wanneer een bestand is geselecteerd en werkt bij het uploaden van de profielfoto.
+
+## Bewerken van Gebruikersprofiel
+
+### Schakelen tussen Bewerkmodus
+
+- De bewerkmodus wordt geactiveerd wanneer de gebruiker op de bewerkknop klikt. Dit wordt bereikt door de toggleEditMode-functie, die de bewerkbaarheid van velden wijzigt en de zichtbaarheid van knoppen aanpast.
+
+### Wijzigingen Opslaan
+
+- De opslaan-knop activeert de saveButton.addEventListener("click")-functie. Hier worden de bewerkte waarden opgehaald en naar de database gestuurd met behulp van de runQuery-functie. Vervolgens worden de weergegeven waarden op de pagina bijgewerkt.
