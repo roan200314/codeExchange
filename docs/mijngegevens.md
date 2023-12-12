@@ -94,7 +94,37 @@ De HTML-elementen zijn ontworpen om een overzichtelijke gebruikersinterface te b
 
 
 
-- getUserInfo(userid): Een asynchrone functie om gebruikersinformatie op te halen op basis van de gebruikers-id. Het gebruikt de api.queryDatabase-functie om een databasequery uit te voeren.
+- <details> <summary> getUserInfo(userid): Een asynchrone functie om gebruikersinformatie op te halen op basis van de gebruikers-id. 
+      </summary>
+  
+    ```
+      // Function to get user info
+       async function getUserInfo(userid: number): Promise<User | undefined> {
+      try {
+        const data: any = await api.queryDatabase("SELECT * FROM user WHERE id = ?", userid);
+
+        if (data.length > 0) {
+            const user: User = new User(
+                data[0]["id"],
+                data[0]["username"],
+                data[0]["email"],
+                data[0]["firstname"],
+                data[0]["lastname"],
+                data[0]["expertise"],
+                data[0]["dateOfBirth"],
+                data[0]["yearsOfExperience"],
+                data[0]["profilePicture"]
+            );
+            return user;
+        }
+        return undefined;
+     } catch (error) {
+        console.error(error);
+        return undefined;
+     }}
+
+  ```
+ </details>
 
 - saveButton.addEventListener("click"): Een event listener die wordt geactiveerd wanneer de gebruiker op de opslaan-knop klikt. Het haalt de bewerkte waarden op en update de database met behulp van de runQuery-functie.
 
