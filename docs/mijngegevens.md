@@ -15,9 +15,42 @@ De HTML-elementen zijn ontworpen om een overzichtelijke gebruikersinterface te b
   ```
     </details>
 
--  profilePictureInput: Een invoerveld voor het selecteren van een profielfoto.
+- <details> <summary>  profilePictureInput: Een invoerveld voor het selecteren van een profielfoto en inserten in de Database, code moet nog aan gewerkt worden.
+    </summary>
+     
+     ```
 
--  userProfilePicture: Een klikbare afbeelding die de profielfoto vertegenwoordigt.
+       profilePictureInput.addEventListener("change", async (): Promise<void> => {
+       const selectedFile: File | undefined = profilePictureInput.files?.[0];
+
+       if (selectedFile) {
+        
+           const userId: number | undefined = session.get("user");
+
+           if (userId !== undefined) {
+               // Upload the selected file and update the database
+               await runQuery(
+                    "UPDATE user SET profilePicture = (?) WHERE id = (?)",
+                    [selectedFile.name, userId]
+                );
+
+               // Update the displayed values on the page
+               document.getElementById("userProfilePicture")!.src = URL.createObjectURL(selectedFile);
+
+               console.log("Selected file:", selectedFile);
+           }
+       }  
+     ```                                                   
+ </details>
+
+- <details> <summary>  userProfilePicture: Een klikbare afbeelding die de profielfoto vertegenwoordigt. 
+   </summary>
+
+   ```
+     // Update the displayed values on the page
+            document.getElementById("userProfilePicture")!.src = URL.createObjectURL(selectedFile);
+   ```
+   </details>
 
 ## TypeScript-code
 
