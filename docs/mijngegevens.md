@@ -53,10 +53,46 @@ De HTML-elementen zijn ontworpen om een overzichtelijke gebruikersinterface te b
    </details>
 
 ## TypeScript-code
+- <details> <summary> toggleEditMode(): Deze functie schakelt de bewerkmodus in en uit door de contentEditable-attributen van de velden te wijzigen. Het zorgt ook    voor de zichtbaarheid van de bewerk- en opslaan-knoppen. 
+    </summary>
 
-- toggleEditMode(): Deze functie schakelt de bewerkmodus in en uit door de contentEditable-attributen van de velden te wijzigen. Het zorgt ook voor de zichtbaarheid van de bewerk- en opslaan-knoppen.
+  ``` 
+   // Function to toggle edit mode
+    function toggleEditMode(): void {
+    const editableFields: NodeListOf<Element> = document.querySelectorAll("[contenteditable]");
+    editableFields.forEach((field: Element) => {
+        field.contentEditable = String(!(field as HTMLElement).isContentEditable);
+    });
 
-- setUserValues(): Deze functie haalt de gebruikersgegevens op vanuit de backend-API en vult de HTML-elementen in met de ontvangen informatie.
+    // Toggle button visibility
+    editButton.style.display = editButton.style.display === "none" ? "block" : "none";
+    saveButton.style.display = saveButton.style.display === "none" ? "block" : "none";
+    } 
+  ```
+    
+</details>
+ 
+- <details> <summary> setUserValues(): Deze functie haalt de gebruikersgegevens op vanuit de backend-API en vult de HTML-elementen in met de ontvangen informatie.
+      </summary>
+       
+    ```   // Function to set user values
+        async function setUserValues(): Promise<void> {
+         const user: User | undefined = await getUserInfo(session.get("user"));
+         console.log(User);
+
+         if (user) {
+          document.getElementById("userName")!.textContent = user.firstname + " " + user.lastname;
+          document.getElementById("userUsername")!.textContent = user.username;
+          document.getElementById("userEmail")!.textContent = user.email;
+          document.getElementById("userExpertise")!.textContent = user.expertise || "";
+          document.getElementById("userDateOfBirth")!.textContent = user.dateOfBirth || "";
+          document.getElementById("userYearsOfExperience")!.textContent = user.yearsOfExperience?.toString() || "";
+          document.getElementById("userProfilePicture")!.src = user.profilePicture || "";
+         }}
+    ```
+</details>
+
+
 
 - getUserInfo(userid): Een asynchrone functie om gebruikersinformatie op te halen op basis van de gebruikers-id. Het gebruikt de api.queryDatabase-functie om een databasequery uit te voeren.
 
