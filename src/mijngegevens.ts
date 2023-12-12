@@ -79,6 +79,7 @@ saveButton.addEventListener("click", async (): Promise<void> => {
 
    
     const userId: number | undefined = session.get("user");
+    
    
 
 
@@ -86,8 +87,8 @@ saveButton.addEventListener("click", async (): Promise<void> => {
     if (userId !== undefined && editedGeboortedatum !== undefined && editedJaarervaring !== undefined && editedExpertise !== undefined) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET geboortedatum = ?, jaar_ervaring = ?, expertise = ? WHERE id = ?",
-            [editedGeboortedatum, editedJaarervaring, editedExpertise, userId]
+            "UPDATE user SET geboortejaar = ?, jaar_ervaring = ?, expertise = ? WHERE id =  ?", [ editedGeboortedatum, editedJaarervaring, editedExpertise ,userId]
+            
         );
 
         // Update the displayed values on the page
