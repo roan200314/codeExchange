@@ -93,7 +93,7 @@ async function laatZien(): Promise<void> {
                         const titel: HTMLElement | null = document.createElement("a");
                         titel.id = "postTitel";
                         titel.href = `post.html?id=${post.id}`;
-                        titel.textContent = `Titel: ${post.titel}`;
+                        titel.textContent = `${post.titel}`;
 
                         // Een paragraaf om de prijs van het uitje weer te geven
                         const vraag: HTMLElement | null = document.createElement("p");
