@@ -15,16 +15,34 @@ body {
     float: right;
 }
 
-
 #zoekKnop {
     position: relative;
     bottom: 38px;
     left: 220px;
 }
 
-.allePosts {
+#data {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.allepost {
+    position: relative;
+    left: 10px;
+    top: 10px;
+    display: flex;
     border-width: 1px;
     border-style: solid;
     border-color: gray;
+    width: 600px;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
 }
 
+#postTitel {
+    display: flex;
+    justify-content: center;
+}
