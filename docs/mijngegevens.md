@@ -1,5 +1,5 @@
 
-Deze functionaliteit stelt gebruikers in staat om hun profielgegevens te bekijken, bewerken en hun profielfoto's te beheren. Hieronder staan de belangrijkste onderdelen.
+# Deze functionaliteit stelt gebruikers in staat om hun profielgegevens te bekijken, bewerken en hun profielfoto's te beheren. Hieronder staan de belangrijkste onderdelen.
 
 
  ## Gebruikersinterface
