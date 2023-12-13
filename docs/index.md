@@ -8,13 +8,13 @@ Dit project houdt in dat Roan en Erdem een website aan het maken zijn die ervoor
 <details>
   <summary>laatZien(): gegevens ophalen</summary>
 
-  ```javascript
+
 //////////vragen op scherm laten zien
 // Het element waarin de gegevens worden weergegeven selecteren
 const data: HTMLElement | null = document.getElementById("data");
 
 async function laatZien(): Promise<void> {
-    // De gegevens uit de database ophalen
+     De gegevens uit de database ophalen
     const posts: any[] | undefined = await runQuery("SELECT * FROM posts");
     const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers");
     const users: any[] | undefined = await runQuery("SELECT * FROM user");
@@ -24,33 +24,50 @@ async function laatZien(): Promise<void> {
 </details>
 
 </details>
+<details>
 <summary>laatZien(): forEach statement</summary>
+<code>
     // De gegevens weergeven in de div
     if (posts && posts.length > 0) {
         posts.forEach((post: any) => {
             // Variabele hernoemen om conflicten te voorkomen
             if (antwoorden && antwoorden.length > 0) {
-                antwoorden.forEach((answer: any) => {
- </details>                   
-                    // Controleren of het antwoord is gekoppeld aan de huidige vraag
+                antwoorden.forEach((answer: any) => {     </code>```
+
+Na dat ik dat heb gedaan maak ik een forEach statement die ervoor zorgt dat ik de gegevens ophaal en dan op het scherm kan laten zien.
+Dit doe ik door eerst door Post te loopen en vervolgens door answers.
+
+ </details> 
+<details>
+<summary>laatZien(): checken of het antwoord bij de post hoort.</summary>
+                <code>    // Controleren of het antwoord is gekoppeld aan de huidige vraag
                     if (answer.vraag_id === post.id) {
                         const div: HTMLElement | null = document.createElement("div");
-                        div.className = "allepost";
+                        div.className = "allepost";</code>
+````
+Hier checkt de if statement of uit de tabel answers de row "vraag.id" gelijk staat aan 'post.id' als dat zo is maakt die een div aan.   ``                    
+</details>
 
-                        // Een paragraaf om de naam van het uitje weer te geven
+<details>
+<summary>laatZien(): paragrafen aanmaken</summary>
+
+                        <code>// Een paragraaf om de naam van het uitje weer te geven
                         const titel: HTMLElement | null = document.createElement("a");
                         titel.id = "postTitel";
                         titel.href = `post.html?id=${post.id}`;
                         titel.textContent = `${post.titel}`;
 
                         // Een paragraaf om de prijs van het uitje weer te geven
+<details>
+<summary>laatZien(): tekst verkorten
+
                         const vraag: HTMLElement | null = document.createElement("p");
                         vraag.id = "postVraag";
                         const vraagVerkort: any = post.vraag.length > 100 ? post.vraag.substring(0, 100) + "...": post.vraag;
                         vraag.textContent = `Vraag: ${vraagVerkort}` ;
                         vraag.style.marginLeft = "10px";
                         vraag.style.color = "black";
-
+</details>
                         // Extra code gebaseerd op antwoorden
                         const antwoorden: HTMLElement | null = document.createElement("p");
                         antwoorden.id = "answerText";
@@ -74,7 +91,9 @@ async function laatZien(): Promise<void> {
                         datum.id = "postTijd";
                         datum.textContent = `datum van vraag: ${post.tijd}`;
                         datum.style.marginLeft = "10px";
-                        datum.style.color = "black";
+                        datum.style.color = "black";</code>
+In bovenstaande functie maakt die paragrafen aan met de gegevens die in de database staan.                        
+</details>
 
                         // De knoppen en paragrafen aan de div toevoegen
                         div.appendChild(titel);
@@ -96,8 +115,6 @@ async function laatZien(): Promise<void> {
 laatZien();
 
 
-Na dat ik dat heb gedaan maak ik een forEach statement die ervoor zorgt dat ik de gegevens ophaal en dan op het scherm kan laten zien.
-Dit doe ik door eerst door Post te loopen en vervolgens door answers.
 
 daarna heb ik een 'const vraagVerkort'aangemaakt. Hierin heb ik een functie gemaakt waardoor als een vraag die meer dan 100 tekens heeft verkort wordt en dan niet volledig te zien is.
 

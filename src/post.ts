@@ -57,7 +57,12 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
                 data[0]["username"],
                 data[0]["email"],
                 data[0]["firstname"],
-                data[0]["lastname"]
+                data[0]["lastname"],
+                data[0]["expertise"],
+                data[0]["dateOfBirth"],
+                data[0]["yearsOfExperience"],
+                data[0]["profilePicture"]
+
             );
             return user;
         }
