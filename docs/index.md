@@ -6,7 +6,7 @@ We zijn met een Code Exchange website bezig.
 Dit project houdt in dat Roan en Erdem een website aan het maken zijn die ervoor zorgt dat HBO ICT studenten online code kunnen delen dankzij een forum.
 
 <details>
-  <summary>laatZien()</summary>
+  <summary>laatZien(): gegevens ophalen</summary>
 
   ```javascript
 //////////vragen op scherm laten zien
@@ -18,6 +18,10 @@ async function laatZien(): Promise<void> {
     const posts: any[] | undefined = await runQuery("SELECT * FROM posts");
     const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers");
     const users: any[] | undefined = await runQuery("SELECT * FROM user");
+
+
+    # in Bovenstaande functie haal ik eerst alle gegevens op uit de database tabellen : 'post', 'answers' en 'user'. 
+</details>
 
     // De gegevens weergeven in de div
     if (posts && posts.length > 0) {
@@ -87,7 +91,7 @@ async function laatZien(): Promise<void> {
 }
 
 laatZien();
-in Bovenstaande functie haal ik eerst alle gegevens op uit de database tabellen : 'post', 'answers' en 'user'. 
+
 
 Na dat ik dat heb gedaan maak ik een forEach statement die ervoor zorgt dat ik de gegevens ophaal en dan op het scherm kan laten zien.
 Dit doe ik door eerst door Post te loopen en vervolgens door answers.
