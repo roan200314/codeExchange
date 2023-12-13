@@ -21,22 +21,28 @@ function toggleEditMode(): void {
     saveButton.style.display = saveButton.style.display === "none" ? "block" : "none";
 }
 
-// Function to set user values
 async function setUserValues(): Promise<void> {
     const user: User | undefined = await getUserInfo(session.get("user"));
 
     if (user) {
-        document.getElementById("userName")!.textContent = user.firstname + " " + user.lastname;
-        document.getElementById("userUsername")!.textContent = user.username;
-        document.getElementById("userEmail")!.textContent = user.email;
-        const tijd: any = user.birth_year;
-        document.getElementById("userDateOfBirth")!.textContent = tijd;
-        document.getElementById("userExpertise")!.textContent = user.expertise;
-        document.getElementById("userYearsOfExperience")!.textContent = user.years_experience;
-        document.getElementById("userProfilePicture")!.src = user.profile_picture;
-        console.log(tijd);
+        const userNameElement: HTMLElement | null = document.getElementById("userName");
+        const userUsernameElement: HTMLElement | null = document.getElementById("userUsername");
+        const userEmailElement: HTMLElement | null = document.getElementById("userEmail");
+        const userDateOfBirthElement: HTMLElement | null = document.getElementById("userDateOfBirth");
+        const userExpertiseElement: HTMLElement | null = document.getElementById("userExpertise");
+        const userYearsOfExperienceElement: HTMLElement | null = document.getElementById("userYearsOfExperience");
+        const userProfilePictureElement: HTMLImageElement | null = document.getElementById("userProfilePicture");
+
+        if (userNameElement) userNameElement.textContent = user.firstname + " " + user.lastname;
+        if (userUsernameElement) userUsernameElement.textContent = user.username;
+        if (userEmailElement) userEmailElement.textContent = user.email;
+        if (userDateOfBirthElement) userDateOfBirthElement.textContent = user.birth_year;
+        if (userExpertiseElement) userExpertiseElement.textContent = user.expertise;
+        if (userYearsOfExperienceElement) userYearsOfExperienceElement.textContent = user.years_experience;
+        if (userProfilePictureElement) userProfilePictureElement.src = user.profile_picture;
     }
 }
+
 
 // Function to get user info
 async function getUserInfo(userid: number): Promise<User | undefined> {
@@ -51,8 +57,8 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
                 data[0]["firstname"],
                 data[0]["lastname"],
                 data[0]["expertise"],
-                data[0]["dateOfBirth"],
-                data[0]["yearsOfExperience"],
+                data[0]["birth_year"],
+                data[0]["years_experience"],
                 data[0]["profilePicture"]
             );
             return user;
@@ -70,29 +76,34 @@ setUserValues();
 // Add event listener to the edit button
 editButton.addEventListener("click", toggleEditMode);
 
+
 // Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
-    // Get the edited values from the contenteditable elements or input fields
-    const editedGeboortedatum: HTMLElement | null = document.getElementById("userDateOfBirth")?.textContent;
-    const editedJaarervaring: HTMLElement | null = document.getElementById("userYearsOfExperience")?.textContent;
-    const editedExpertise: HTMLElement | null = document.getElementById("userExpertise")?.textContent;
+    // Get the edited values from the input fields
+    const editedGeboortedatum: HTMLInputElement | null = document.getElementById("geboortedatum") as HTMLInputElement;
+    const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience") as HTMLInputElement;
+    const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise") as HTMLInputElement;
 
     // Perform validation and handle empty values if needed
 
-    // Assuming you have the user's ID stored in a variable named userId
     const userId: number | undefined = session.get("user");
 
-    if (userId !== undefined && editedGeboortedatum !== undefined && editedJaarervaring !== undefined && editedExpertise !== undefined) {
+    if (
+        userId !== undefined &&
+        editedGeboortedatum?.value !== undefined &&
+        editedJaarervaring?.value !== undefined &&
+        editedExpertise?.value !== undefined
+    ) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET geboortedatum = ?, jaarervaring = ?, expertise = ? WHERE id = ?",
-            [editedGeboortedatum, editedJaarervaring, editedExpertise, userId]
+            "UPDATE user SET birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
+            [editedGeboortedatum.value, editedExpertise.value, editedJaarervaring.value, userId]
         );
 
         // Update the displayed values on the page
-        document.getElementById("userDateOfBirth")!.textContent = editedGeboortedatum;
-        document.getElementById("userYearsOfExperience")!.textContent = editedJaarervaring;
-        document.getElementById("userExpertise")!.textContent = editedExpertise;
+        document.getElementById("userDateOfBirth")!.textContent = editedGeboortedatum.value;
+        document.getElementById("userYearsOfExperience")!.textContent = editedJaarervaring.value;
+        document.getElementById("userExpertise")!.textContent = editedExpertise.value;
     }
 
     toggleEditMode();
