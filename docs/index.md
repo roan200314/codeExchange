@@ -23,12 +23,15 @@ async function laatZien(): Promise<void> {
     # in Bovenstaande functie haal ik eerst alle gegevens op uit de database tabellen : 'post', 'answers' en 'user'. 
 </details>
 
+</details>
+<summary>laatZien(): forEach statement</summary>
     // De gegevens weergeven in de div
     if (posts && posts.length > 0) {
         posts.forEach((post: any) => {
             // Variabele hernoemen om conflicten te voorkomen
             if (antwoorden && antwoorden.length > 0) {
                 antwoorden.forEach((answer: any) => {
+ </details>                   
                     // Controleren of het antwoord is gekoppeld aan de huidige vraag
                     if (answer.vraag_id === post.id) {
                         const div: HTMLElement | null = document.createElement("div");
