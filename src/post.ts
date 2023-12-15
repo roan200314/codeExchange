@@ -52,8 +52,6 @@ async function setup(): Promise<void> {
     div.appendChild(vraag);
     div.appendChild(tags);
     div.appendChild(antwoord);
-
-
     data?.appendChild(div);
 
 }
