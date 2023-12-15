@@ -47,12 +47,38 @@
             <div id="userInfo">
                 <img id="userProfilePicture" src="/docs/images/CodeXChange/AvatarPlaceholder.png" alt="Profile Picture clickable" style="cursor: pointer; max-width: 100%; height: auto;">
                 <input type="file" id="profilePictureInput" style="display: none;"> <!-- Hidden file input element -->
-                <p><strong>Name:</strong> <span id="userName" contenteditable="false"></span></p>
-                <p><strong>Username:</strong> <span id="userUsername" contenteditable="false"></span></p>
-                <p><strong>Email:</strong> <span id="userEmail" contenteditable="false"></span></p>
-                <p><strong>Expertise:</strong> <span id="userExpertise" contenteditable="false"></span></p>
-                <p><strong>Geboortedatum:</strong> <span id="userDateOfBirth" contenteditable="false"></span></p>
-                <p><strong>Jaren ervaring:</strong> <span id="userYearsOfExperience" contenteditable="false"></span></p>
+                <form>
+                    <div class="mb-3">
+                        <label for="userName">Name:</label>
+                        <span id="userName" contenteditable="false" class="form-control"></span>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="userUsername">Username:</label>
+                        <span id="userUsername" contenteditable="false" class="form-control"></span>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="userEmail">Email:</label>
+                        <span id="userEmail" contenteditable="false" class="form-control"></span>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="geboortedatum">Geboortedatum:</label>
+                        <input type="date" class="form-control" id="geboortedatum">
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="userExpertise">Expertise:</label>
+                        <span id="userExpertise" contenteditable="false" class="form-control"></span>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="userYearsOfExperience">Jaren ervaring:</label>
+                        <span id="userYearsOfExperience" contenteditable="false" class="form-control"></span>
+                    </div> 
+                </form>
+                
         
                 <button class="btn btn-primary btn-lg btn-block" id="editButton" type="button">Edit</button>
                 <button class="btn btn-success btn-lg btn-block" id="saveButton" style="display: none;" type="button">Save Changes</button>
