@@ -20,3 +20,20 @@ body {
     bottom: 38px;
     left: 220px;
 }
+
+#data {
+    display: flex;
+    position: relative;
+    border-width: 1px;
+    left: 300px;
+    top: 155px;
+    width: 800px;
+    border-style: solid;
+    border-color: gray;
+    justify-content: center;
+    padding: 10px;
+}
+
+#titel {
+    font-size: 25px
+}

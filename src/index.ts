@@ -86,7 +86,7 @@ function logout(): void {
 * @param id
 * @returns user object
 */
-async function getPostInfo(userid: number): Promise<Post | undefined> {
+async function getPostInfo(postid: number): Promise<Post | undefined> {
     try {
         const data: any = await api.queryDatabase("SELECT * FROM posts");
  
@@ -114,6 +114,7 @@ async function getPostInfo(userid: number): Promise<Post | undefined> {
 const data: HTMLElement | null = document.getElementById("data");
 
 async function laatZien(): Promise<void> {
+       const post: Post | undefined = await getPostInfo(session.get("post"));
     // De gegevens uit de database ophalen
     const posts: any[] | undefined = await runQuery("SELECT * FROM posts ORDER BY tijd DESC");
     const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers");
