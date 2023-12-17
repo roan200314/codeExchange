@@ -48,3 +48,13 @@ body {
     left: -1px;
 
 }
+#deleteButton {
+    background-color: #ff3333; 
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 10px; 
+    margin-bottom: 5px;
+    cursor: pointer;
+    display: inline-block;
+  }

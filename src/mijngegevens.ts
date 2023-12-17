@@ -21,6 +21,7 @@ function toggleEditMode(): void {
     saveButton.style.display = saveButton.style.display === "none" ? "block" : "none";
 }
 
+
 async function setUserValues(): Promise<void> {
     const user: User | undefined = await getUserInfo(session.get("user"));
 
@@ -28,20 +29,27 @@ async function setUserValues(): Promise<void> {
         const userNameElement: HTMLElement | null = document.getElementById("userName");
         const userUsernameElement: HTMLElement | null = document.getElementById("userUsername");
         const userEmailElement: HTMLElement | null = document.getElementById("userEmail");
-        const userDateOfBirthElement: HTMLElement | null = document.getElementById("userDateOfBirth");
+        const userDateOfBirthElement: HTMLInputElement | null = document.getElementById("geboortedatum") as HTMLInputElement;
         const userExpertiseElement: HTMLElement | null = document.getElementById("userExpertise");
         const userYearsOfExperienceElement: HTMLElement | null = document.getElementById("userYearsOfExperience");
         const userProfilePictureElement: HTMLImageElement | null = document.getElementById("userProfilePicture");
 
+
+
         if (userNameElement) userNameElement.textContent = user.firstname + " " + user.lastname;
         if (userUsernameElement) userUsernameElement.textContent = user.username;
         if (userEmailElement) userEmailElement.textContent = user.email;
-        if (userDateOfBirthElement) userDateOfBirthElement.textContent = user.birth_year;
+        if (userDateOfBirthElement) {
+            const birthDate: Date = new Date(user.birth_year);
+            userDateOfBirthElement.value = birthDate.toLocaleDateString();
+        }
         if (userExpertiseElement) userExpertiseElement.textContent = user.expertise;
         if (userYearsOfExperienceElement) userYearsOfExperienceElement.textContent = user.years_experience;
         if (userProfilePictureElement) userProfilePictureElement.src = user.profile_picture;
     }
 }
+
+
 
 
 // Function to get user info
@@ -56,8 +64,8 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
                 data[0]["email"],
                 data[0]["firstname"],
                 data[0]["lastname"],
-                data[0]["expertise"],
                 data[0]["birth_year"],
+                data[0]["expertise"],
                 data[0]["years_experience"],
                 data[0]["profilePicture"]
             );
@@ -77,33 +85,31 @@ setUserValues();
 editButton.addEventListener("click", toggleEditMode);
 
 
-// Add event listener to the save button
 saveButton.addEventListener("click", async (): Promise<void> => {
     // Get the edited values from the input fields
-    const editedGeboortedatum: HTMLInputElement | null = document.getElementById("geboortedatum") as HTMLInputElement;
-    const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience") as HTMLInputElement;
-    const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise") as HTMLInputElement;
+    const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
+    const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise")   .textContent;
+    const editedUserName: HTMLInputElement | null = document.getElementById("userUsername") .textContent;
+    console.log(typeof editedUserName);
+    console.log(editedJaarervaring);
 
     // Perform validation and handle empty values if needed
 
     const userId: number | undefined = session.get("user");
+    console.log(userId);
+    console.log (typeof userId);
 
     if (
         userId !== undefined &&
-        editedGeboortedatum?.value !== undefined &&
-        editedJaarervaring?.value !== undefined &&
-        editedExpertise?.value !== undefined
+        editedJaarervaring !== null &&
+        editedExpertise !== null &&
+        editedUserName !== null 
     ) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
-            [editedGeboortedatum.value, editedExpertise.value, editedJaarervaring.value, userId]
+            "UPDATE user SET username = ? WHERE id = ?",
+            [editedUserName, userId]
         );
-
-        // Update the displayed values on the page
-        document.getElementById("userDateOfBirth")!.textContent = editedGeboortedatum.value;
-        document.getElementById("userYearsOfExperience")!.textContent = editedJaarervaring.value;
-        document.getElementById("userExpertise")!.textContent = editedExpertise.value;
     }
 
     toggleEditMode();
@@ -121,7 +127,7 @@ profilePictureInput.addEventListener("change", async (): Promise<void> => {
     const selectedFile: File | undefined = profilePictureInput.files?.[0];
 
     if (selectedFile) {
-    
-        console.log("Selected file:", selectedFile);
+
+
     }
 });
