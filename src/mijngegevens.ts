@@ -88,8 +88,8 @@ editButton.addEventListener("click", toggleEditMode);
 saveButton.addEventListener("click", async (): Promise<void> => {
     // Get the edited values from the input fields
     const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
-    const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise")   .textContent;
-    const editedUserName: HTMLInputElement | null = document.getElementById("userUsername") .textContent;
+    const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
+    const editedUserName: HTMLInputElement | null = document.getElementById("userUsername").textContent;
     console.log(typeof editedUserName);
     console.log(editedJaarervaring);
 
@@ -97,13 +97,13 @@ saveButton.addEventListener("click", async (): Promise<void> => {
 
     const userId: number | undefined = session.get("user");
     console.log(userId);
-    console.log (typeof userId);
+    console.log(typeof userId);
 
     if (
         userId !== undefined &&
         editedJaarervaring !== null &&
         editedExpertise !== null &&
-        editedUserName !== null 
+        editedUserName !== null
     ) {
         // Update the database with the new values
         await runQuery(
