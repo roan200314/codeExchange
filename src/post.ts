@@ -15,7 +15,6 @@ async function setup(): Promise<void> {
     const users: any[] | undefined = await runQuery("SELECT * FROM user");
 
     const postDB: any = posts[0];
-    const antwoordDB: any = antwoorden[0];
 
     // Haal alle gegevens van de gebruiker op uit de database en stop dat in het model User
     const user: User | undefined = await getUserInfo(session.get("user"));
@@ -23,18 +22,61 @@ async function setup(): Promise<void> {
     const data: HTMLElement | null = document.getElementById("data");
     const div: HTMLElement | null = document.createElement("div");
 
-    const titel: HTMLElement | null = document.createElement("p");
-    titel.id = "titel";
+    const titel: HTMLParagraphElement | null = document.createElement("p");
+    titel.id = "titelVraag";
     titel.innerText = `${postDB.titel}`;
     titel.style.color = "black";
     div.appendChild(titel);
 
-    const vraag: HTMLElement | null = document.createElement("code");
+    const vraag: HTMLParagraphElement | null = document.createElement("p");
     vraag.id = "vraag";
     vraag.innerText = `${postDB.vraag}`;
     vraag.style.color = "black";
-    div.appendChild(vraag);
 
+    // Check for triple single quotes in the question and create a textarea for each match
+    const vraagText: string | null = vraag.innerText;
+    if (vraagText) {
+        const codeCheck: RegExpMatchArray | null = vraagText.match(/'''([^']+?)'''/g);
+
+        if (codeCheck) {
+            let lastIndex: number = 0;
+
+            codeCheck.forEach((match: string) => {
+                const startIndex: number = vraagText.indexOf(match, lastIndex);
+                const prefixText: string = vraagText.substring(lastIndex, startIndex);
+
+                // Display text before the match
+                const prefixElement: HTMLSpanElement = document.createElement("span");
+                prefixElement.id = "vraagTop";
+                prefixElement.style.color = "black";
+                prefixElement.innerText = prefixText;
+                div.appendChild(prefixElement);
+
+                // Display the match inside a textarea
+                const codeText: string = match.replace(/'''/g, "");
+                const textareaElement: HTMLTextAreaElement = document.createElement("textarea");
+                textareaElement.value = codeText;
+                textareaElement.disabled = "true";
+                div.appendChild(textareaElement);
+
+                // Update lastIndex for the next iteration
+                lastIndex = startIndex + match.length;
+            });
+
+            // Display the remaining text after the last match
+            const textVraag: string = vraagText.substring(lastIndex);
+            const element: HTMLSpanElement = document.createElement("span");
+            element.id = "vraagBottom";
+            element.style.color = "black";
+            element.innerText = textVraag;
+            div.appendChild(element);
+        } else {
+            // If no triple single quotes found, display the text as is
+            const vraagElement: HTMLSpanElement = document.createElement("span");
+            vraagElement.innerText = vraagText;
+            div.appendChild(vraagElement);
+        }
+    }
     const tags: HTMLElement | null = document.createElement("p");
     tags.innerText = `${postDB.tags}`;
     tags.style.color = "black";
@@ -52,41 +94,8 @@ async function setup(): Promise<void> {
             div.appendChild(tagElement);
         });
     }
-
-    const antwoord: HTMLElement | null = document.createElement("p");
-    antwoord.id = "antwoord";
-    antwoord.innerText = `antwoord: ${antwoordDB.antwoord}`;
-    antwoord.style.color = "black";
-
-    div.appendChild(antwoord);
-
-    const textareaElement: HTMLTextAreaElement | null = createTextareaForCode(postDB.vraag);
-    if (textareaElement) {
-        div.appendChild(textareaElement);
-    }
-
     data?.appendChild(div);
-}
 
-/**
- * Create a textarea for code if it is enclosed in single quotes
- * @param text The input text
- * @returns HTMLTextAreaElement or null if no code block is found
- */
-function createTextareaForCode(text: string): HTMLTextAreaElement | null {
-    const codeRegex: RegExp = /'([^']*)'/;
-    const match: RegExpMatchArray | null = text.match(codeRegex);
-
-    if (match) {
-        const codeText: string = match[1];
-
-        const textareaElement: HTMLTextAreaElement = document.createElement("textarea");
-        textareaElement.value = codeText;
-
-        return textareaElement;
-    }
-
-    return null;
 }
 
 /**

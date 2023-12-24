@@ -62,3 +62,7 @@ body {
     right: 334px;
     top: 10px;
 }
+
+#labelCode {
+    font-size: 15px;
+}

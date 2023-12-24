@@ -34,8 +34,9 @@ body {
     padding: 10px;
 }
 
-#titel {
-    font-size: 25px
+#titelVraag {
+    font-size: 25px;
+    padding-bottom: 41px;
 }
 
 #vraag {
@@ -56,4 +57,21 @@ body {
 
 #antwoord {
     padding-top: 31px;
+}
+
+#vraagTop {
+    display: flex;
+}
+
+#vraagBottom {
+    display: flex;
+}
+
+textarea {
+    width: 100%;
+    height: fit-content;
+}
+
+.antwoord {
+    display: flex;
 }
