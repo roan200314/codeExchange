@@ -37,3 +37,23 @@ body {
 #titel {
     font-size: 25px
 }
+
+#vraag {
+    margin-top: 58px;
+}
+
+#tags {
+    display: flex;
+    margin: 15px;
+    padding-bottom: 15px;
+    color: white;
+    padding: 14px 20px 14px 19px;
+    border-radius: 8px;
+    background-color: #426b1f;
+    text-decoration: none;
+    width: fit-content;
+}
+
+#antwoord {
+    padding-top: 31px;
+}
