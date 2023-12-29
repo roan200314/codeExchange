@@ -85,11 +85,16 @@ setUserValues();
 editButton.addEventListener("click", toggleEditMode);
 
 
-saveButton.addEventListener("click", async (): Promise<void> => {
+saveButton.addEventListener("click", async (): Promise<void> => { 
     // Get the edited values from the input fields
+    const editeduserName: HTMLInputElement | null = document.getElementById("userName").textContent;
+    const editedUsername: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
+    const editeduserEmail: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
     const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
     const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
-    const editedUserName: HTMLInputElement | null = document.getElementById("userUsername").textContent;
+    const editedgeboortedatum: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
+
+    
     console.log(typeof editedUserName);
     console.log(editedJaarervaring);
 
@@ -103,12 +108,15 @@ saveButton.addEventListener("click", async (): Promise<void> => {
         userId !== undefined &&
         editedJaarervaring !== null &&
         editedExpertise !== null &&
-        editedUserName !== null
+        editeduserName !== null &&
+        editeduserEmail !== null &&
+        editedgeboortedatum !== null &&
+        editedUsername !== null
     ) {
         // Update the database with the new values
         await runQuery(
             "UPDATE user SET username = ? WHERE id = ?",
-            [editedUserName, userId]
+            [editedUsername, userId]
         );
     }
 
