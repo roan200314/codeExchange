@@ -33,7 +33,7 @@ async function setup(): Promise<void> {
     vraag.innerText = `${postDB.vraag}`;
     vraag.style.color = "black";
 
-    // Check for triple single quotes in the question and create a textarea for each match
+    // Check voor 3 qoutes on vervolgens een textarea te zetten voor die match.
     const vraagText: string | null = vraag.innerText;
     if (vraagText) {
         const codeCheck: RegExpMatchArray | null = vraagText.match(/'''([^']+?)'''/g);
@@ -59,11 +59,11 @@ async function setup(): Promise<void> {
                 textareaElement.disabled = "true";
                 div.appendChild(textareaElement);
 
-                // Update lastIndex for the next iteration
+                // Update lastIndex
                 lastIndex = startIndex + match.length;
             });
 
-            // Display the remaining text after the last match
+            // de rest van de tekst laten zien
             const textVraag: string = vraagText.substring(lastIndex);
             const element: HTMLSpanElement = document.createElement("span");
             element.id = "vraagBottom";
@@ -71,7 +71,7 @@ async function setup(): Promise<void> {
             element.innerText = textVraag;
             div.appendChild(element);
         } else {
-            // If no triple single quotes found, display the text as is
+            // als geen 3 qoutes zijn tekst laten zien.
             const vraagElement: HTMLSpanElement = document.createElement("span");
             vraagElement.innerText = vraagText;
             div.appendChild(vraagElement);
@@ -81,16 +81,16 @@ async function setup(): Promise<void> {
     tags.innerText = `${postDB.tags}`;
     tags.style.color = "black";
 
-    // Extract the text content from the HTMLElement and then split it
+    // split de tekst
     const tagsText: string | null = tags.innerText;
     if (tagsText) {
-        const tagArray: string[] = tagsText.split(","); // Split the string into an array
+        const tagArray: string[] = tagsText.split(","); // Split de string naar array
 
-        // Create new HTML elements for each tag and append them to the document
+        // maak nieuwe html tags en voeg ze toe aan de div
         tagArray.forEach((tag) => {
             const tagElement: any = document.createElement("span");
             tagElement.id = "tags";
-            tagElement.innerText = tag.trim(); // Trim to remove any leading/trailing whitespaces
+            tagElement.innerText = tag.trim(); // whitespaces weghalen.
             div.appendChild(tagElement);
         });
     }

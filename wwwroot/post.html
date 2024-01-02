@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="/assets/css/navbar.css" />
 
         <link rel="icon" type="image/png" sizes="32x32" href="assets/pics/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/pics/favicon/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/pics/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
     </head>
     <body>
@@ -42,21 +42,30 @@
             </div>
             <a id="vraagknop" class="ms-5" href="vraagstellen.html">Vraag stellen</a>
         </nav>
-    <div id="data"></div>
-    <form>
-        <div class="antwoord">
-            <div id="titelform" class="mb-3">
-                <label for="exampleInputEmail1" class="form-label text-dark">Antwoord</label>
-                <input type="text" class="form-control" id="titelVraag" placeholder="Vul de titel van je vraag in..">
-            </div>
-            <button id="button_vraag" type="button" class="btn btn-primary" onclick="zetIn()">Stuur antwoord op</button>
+        <div class="positieDiv">
+            <div id="data"></div>
         </div>
-    </form>
-</body>
-<script src="../src/post.ts" type="module" async></script>
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-crossorigin="anonymous"
-></script>
+        <form class="antwoordOpVraag">
+            <div class="antwoord">
+                <div id="titelform" class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-dark">Antwoord</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="titelAntwoord"
+                        placeholder="Vul de titel van je vraag in.."
+                    />
+                </div>
+                <button id="button_Antwoord" type="button" class="btn btn-primary" onclick="zetIn()">
+                    Stuur antwoord op
+                </button>
+            </div>
+        </form>
+    </body>
+    <script src="../src/post.ts" type="module" async></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+    ></script>
 </html>

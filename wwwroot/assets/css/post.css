@@ -21,11 +21,15 @@ body {
     left: 220px;
 }
 
+.positieDiv {
+    display: flex;
+    justify-content: center;
+}
+
 #data {
     display: flex;
     position: relative;
     border-width: 1px;
-    left: 300px;
     top: 155px;
     width: 800px;
     border-style: solid;
@@ -73,5 +77,19 @@ textarea {
 }
 
 .antwoord {
+    position: relative;
+    justify-content: center;
+    top: 250px;
     display: flex;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 8px;
+    width: 800px;
+    height: 400px;
+}
+
+
+.antwoordOpVraag {
+    display: flex;
+    justify-content: center;
 }

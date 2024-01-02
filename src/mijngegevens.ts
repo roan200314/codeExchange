@@ -1,13 +1,14 @@
 // Importeer de runQuery functie uit het queryutil bestand
 import { runQuery } from "./utils/queryutil";
 import "./config";
-import { api, session } from "@hboictcloud/api";
+import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
 
 
 const editButton: HTMLButtonElement = document.getElementById("editButton") as HTMLButtonElement;
 const saveButton: HTMLButtonElement = document.getElementById("saveButton") as HTMLButtonElement;
 const profilePictureInput: HTMLInputElement = document.getElementById("profilePictureInput") as HTMLInputElement;
+const user: User | undefined = await getUserInfo(session.get("user"));
 
 // Function to toggle edit mode
 function toggleEditMode(): void {
@@ -168,18 +169,21 @@ deleteButton?.addEventListener("click", async () => {
             editedUsername !== null
         ) {
             // Perform the delete query
-            await runQuery(
+            await runQuery("DELETE FROM user WHERE id = ?", user.id);
                 
-            );
+        
 
             // Optionally, you can perform additional actions after deletion
             console.log("Account deleted successfully");
+
+            url.redirect("login.html");
+        }
         } else {
             // Handle the case when some values are missing or invalid
             console.log("Invalid values or missing data");
         }
-    } else {
-        // User canceled the deletion
-        console.log("Account deletion canceled");
-    }
+    //     else {
+    //     // User canceled the deletion
+    //     console.log("Account deletion canceled");
+    // }
 });
