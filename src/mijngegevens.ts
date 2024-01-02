@@ -87,28 +87,34 @@ editButton.addEventListener("click", toggleEditMode);
 
 saveButton.addEventListener("click", async (): Promise<void> => {
     // Get the edited values from the input fields
+    const editedName: HTMLInputElement | null = document.getElementById("userName").textContent;
+    const editedUsername: HTMLInputElement | null = document.getElementById("userUsername").textContent;
+    const editeduserEmail: HTMLInputElement | null = document.getElementById("userEmail").textContent;
     const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
     const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
-    const editedUserName: HTMLInputElement | null = document.getElementById("userUsername").textContent;
-    console.log(typeof editedUserName);
-    console.log(editedJaarervaring);
+    const editedgeboortedatum: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
+
+
+    
 
     // Perform validation and handle empty values if needed
 
     const userId: number | undefined = session.get("user");
-    console.log(userId);
-    console.log(typeof userId);
+   
 
     if (
         userId !== undefined &&
         editedJaarervaring !== null &&
         editedExpertise !== null &&
-        editedUserName !== null
+        editedName !== null &&
+        editeduserEmail !== null &&
+        editedgeboortedatum !== null &&
+        editedUsername !== null
     ) {
         // Update the database with the new values
         await runQuery(
             "UPDATE user SET username = ? WHERE id = ?",
-            [editedUserName, userId]
+            [editedUsername, userId]
         );
     }
 
@@ -129,5 +135,51 @@ profilePictureInput.addEventListener("change", async (): Promise<void> => {
     if (selectedFile) {
 
 
+    }
+});
+const deleteButton: HTMLButtonElement | null = document.getElementById("deleteButton") as HTMLButtonElement | null;
+
+// Event listener for the delete button
+deleteButton?.addEventListener("click", async () => {
+    // Display a confirmation popup
+    const userConfirmed: boolean = window.confirm("Do you really want to delete your account?");
+
+    if (userConfirmed) {
+        // Get the edited values from the input fields
+        const editedName: HTMLInputElement | null = document.getElementById("userName").textContent;
+        const editedUsername: HTMLInputElement | null = document.getElementById("userUsername").textContent;
+        const editeduserEmail: HTMLInputElement | null = document.getElementById("userEmail").textContent;
+        const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience").textContent;
+        const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
+        const editedgeboortedatum: HTMLInputElement | null = document.getElementById("userExpertise").textContent;
+
+        // Validate and handle empty values if needed
+
+        const userId: number | undefined = session.get("user");
+       
+
+        if (
+            userId !== undefined &&
+            editedJaarervaring !== null &&
+            editedExpertise !== null &&
+            editedName !== null &&
+            editeduserEmail !== null &&
+            editedgeboortedatum !== null &&
+            editedUsername !== null
+        ) {
+            // Perform the delete query
+            await runQuery(
+                
+            );
+
+            // Optionally, you can perform additional actions after deletion
+            console.log("Account deleted successfully");
+        } else {
+            // Handle the case when some values are missing or invalid
+            console.log("Invalid values or missing data");
+        }
+    } else {
+        // User canceled the deletion
+        console.log("Account deletion canceled");
     }
 });
