@@ -255,6 +255,7 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
 }
 
  ```
+ </details>
 
 - **Stappen**:
   1. Voer een databasequery uit om gebruikersgegevens op te halen op basis van de gebruikers-ID.
