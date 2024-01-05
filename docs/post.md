@@ -258,22 +258,128 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
  </details>
 
 - **Stappen**:
-  1. Voer een databasequery uit om gebruikersgegevens op te halen op basis van de gebruikers-ID.
-  2. Als gegevens worden gevonden, maak een nieuw `User` object aan en retourneer het.
-  3. Als er geen gegevens zijn, retourneer `undefined`.
-  4. Als er een fout optreedt, log deze in de console en retourneer `undefined`.
+<details>
+<summary>  1. Voer een databasequery uit om gebruikersgegevens op te halen op basis van de gebruikers-ID.</summary>
+
+```javascript
+async function getUserInfo(userid: number): Promise<User | undefined> {
+    try {
+        const data: any = await api.queryDatabase("SELECT * FROM user WHERE id = ?", userid);
+
+        // Voer de code uit om gebruikersgegevens op te halen
+
+        if (data.length > 0) {
+            const user: User = new User(
+                data[0]["id"],
+                data[0]["username"],
+                data[0]["email"],
+                data[0]["firstname"],
+                data[0]["lastname"],
+                data[0]["expertise"],
+                data[0]["dateOfBirth"],
+                data[0]["yearsOfExperience"],
+                data[0]["profilePicture"]
+            );
+            return user;
+        }
+        return undefined;
+    } catch (error) {
+        console.error(error);
+        return undefined;
+    }
+}
+
+```
+</details>
+<details>
+  <summary>2. Als gegevens worden gevonden, maak een nieuw `User` object aan en retourneer het.</summary>
+
+  ```javascript
+  if (data.length > 0) {
+    const user: User = new User(
+        data[0]["id"],
+        data[0]["username"],
+        data[0]["email"],
+        data[0]["firstname"],
+        data[0]["lastname"],
+        data[0]["expertise"],
+        data[0]["dateOfBirth"],
+        data[0]["yearsOfExperience"],
+        data[0]["profilePicture"]
+    );
+    return user;
+}
+
+  ```
+</details>
+<details> 
+ <summary>3. Als er geen gegevens zijn, retourneer `undefined`.</summary>
+
+ ```javascript
+  } else {
+            return undefined; // Retourneer undefined als er geen gegevens zijn
+ ```
+ </details>
+ <details>
+ <summary> 4. Als er een fout optreedt, log deze in de console en retourneer `undefined`.</summary>
+
+ ```javascript
+    } catch (error) {
+        console.error(error);
+        return undefined;
+    }
+ ```
+ </details>
 
 ### Functie: `logout`
 
 - **Doel**: Verwijder de sessie van de gebruiker en stuur ze door naar de inlogpagina na bevestiging.
 
 - **Stappen**:
-  1. Toon een bevestigingsvenster voor uitloggen.
-  2. Als de gebruiker bevestigt, verwijder de sessie.
-  3. Stuur de gebruiker door naar de inlogpagina.
+ <details>
+ <summary> 1. Toon een bevestigingsvenster voor uitloggen.</summary>
+
+ ```javascript
+ function logout(): void {
+    // Toon een bevestigingsvenster voor uitloggen
+    const uitloggen: any = confirm("Weet u zeker dat u wilt uitloggen?");
+
+ ```
+ </details>
+
+ <details>
+ <summary> 2. Als de gebruiker bevestigt, verwijder de sessie.</summary>
+
+ ```javascript
+ 
+    if (uitloggen === true) {
+        // Verwijder de sessiegegevens
+        session.remove("user");
+ ```
+ </details>
+
+ <details>
+ <summary> 3. Stuur de gebruiker door naar de inlogpagina.</summary>
+ 
+ ```javascript
+  // Stuur de gebruiker door naar de inlogpagina
+        url.redirect("login.html");
+    }
+ ```
+ </details>
 
 ### Uitvoering
 
-- Roep de `setup` functie aan om de pagina-initialisatie te starten bij het laden van de pagina.
+<details>
+<summary>- Roep de `setup` functie aan om de pagina-initialisatie te starten bij het laden van de pagina.</summary>
+
+```javascript
+// Roep de `setup` functie aan bij het laden van de pagina
+document.addEventListener("DOMContentLoaded", () => {
+    setup();
+});
+
+```
+</details>
 
 Met deze code kan een webpagina worden geconfigureerd om gebruikersinformatie weer te geven, met ondersteuning voor uitloggen en weergave van vraaggerelateerde informatie.
