@@ -72,8 +72,13 @@ Feedback 4:
 
 Feedback 5:
 
-- P2: 
-- P4: 
-- P5: 
-- P6: 
+- P2: Makkelijk te vinden aangezien het op de Home pagina is
+- P4: Vragen zijn meteen te zien op de home pagina wat wel handig is
+- P5: Als je op de box klikt zou ik het handig vinden dat de vraag opent in de plaats van alleen de blauwe text
+- P6: layout is goed maar design nog simpel
+
+
+Erdem & Roan
+
+
 
