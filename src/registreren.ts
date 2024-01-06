@@ -44,11 +44,11 @@ async function zetIn(event: Event): Promise<void> {
     } else if (wachtwoord !== wachtwoord2) {
         alert("De wachtwoorden komen niet overeen.");
     } else {
-        // Controleren of het e-mailadres al in de database bestaat
-        const userExists: any = await isEmailAlreadyExists(email);
+        // Controleren of het gebruikersnaam al in de database bestaat
+        const userExists: any = await isUsernameAlreadyExists(gebruikersnaam);
 
         if (userExists) {
-            alert("Dit e-mailadres is al geregistreerd. Probeer in te loggen of vul een ander e-mailadres in.");
+            alert("Dit gebruikersnaam is al geregistreerd. Probeer in te loggen of vul een ander gebruikersnaam in.");
         } else {
             // Invoegen in de database
             alert("Succesvol geregistreerd.");
@@ -75,8 +75,8 @@ function isPasswordValid(password: string): boolean {
 }
 
 // Functie om te controleren of een e-mailadres al bestaat in de database
-async function isEmailAlreadyExists(email: string): Promise<boolean> {
+async function isUsernameAlreadyExists(username: string): Promise<boolean> {
     // Aannemende dat de runQuery-functie een boolean retourneert die aangeeft of het e-mailadres bestaat
-    const result: any = await runQuery("SELECT COUNT(*) FROM user WHERE email = ?", [email]);
+    const result: any = await runQuery("SELECT COUNT(*) FROM user WHERE username = ?", [username]);
     return result && result[0] && result[0]["COUNT(*)"] > 0;
 }
