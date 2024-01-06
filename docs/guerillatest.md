@@ -44,9 +44,17 @@ Feedback 1:
 
 2: Stel een vraag
 
+Feedback 2:
+
 3: Geef antwoord op een vraag
+
+Feedback 3:
 
 4: Registreer je op de website
 
+Feedback 4:
+
 5: Hoe bekijk je een vraag
+
+Feedback 5:
 
