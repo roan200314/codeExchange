@@ -82,5 +82,8 @@ Feedback 5:
 
 Erdem & Roan
 
+Conclusie:
+
+De layout is allemaal heel logisch maar er moet nog aan het design gewerkt worden, ook zijn er minimale aanpassing nodig en verliep de test vooral soepel met de gebruikers.
 
 
