@@ -1,3 +1,5 @@
+# Sprint 1 Guerilla Test:
+
 1 : Registreer een account
 
 Feedback 1: 
@@ -35,7 +37,7 @@ Feedback 5:
 - P3: Rating systeem was een beetje onduidelijk. 
 - P5; Website ziet er overzichtelijk uit
 
-Sprint 2 Guerrilla Test:
+# Sprint 2 Guerrilla Test:
 
 1: Verwijder je account
 
