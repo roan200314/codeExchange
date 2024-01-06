@@ -40,21 +40,40 @@ Sprint 2 Guerrilla Test:
 1: Verwijder je account
 
 Feedback 1:
-- 
+- P3: Makkelijk te vinden, logische plek.
+- P6: Knop is duidelijk, goeie plek
+- P7: Makkelijk te vinden, logische plek.
 
 2: Stel een vraag
 
 Feedback 2:
 
+- P1: Grote groene knop, mooi dat het in de navbar zit
+- P2: Ging soepel
+- P5: Mooi en duidelijk 
+
 3: Geef antwoord op een vraag
 
 Feedback 3:
+
+- P1: Code snippets toe kunnen voegen zou handig zijn
+- P4: Duidelijker code snippets kunnen toevoegen, misschien een knopje daarvoor
+- P8: Antwoord geven was makkelijk, misschien nog de design aanpassen
 
 4: Registreer je op de website
 
 Feedback 4:
 
+- P1: Goed en duidelijk, wachtwoord ook repeat
+- P3: ziet er strak uit
+
+
 5: Hoe bekijk je een vraag
 
 Feedback 5:
+
+- P2: 
+- P4: 
+- P5: 
+- P6: 
 
