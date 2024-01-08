@@ -116,7 +116,7 @@ saveButton.addEventListener("click", async (): Promise<void> => {
     ) {
         // Update the database with the new values
         await runQuery(
-            "UPDATE user SET `username` = ?, email = ?, firstname = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
+            "UPDATE user SET username = ?, email = ?, firstname = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
             [usernameValue, userEmailValue, nameValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId]
         );
         
