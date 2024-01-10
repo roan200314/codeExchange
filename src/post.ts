@@ -25,7 +25,7 @@ async function setup(): Promise<void> {
     const titel: HTMLParagraphElement | null = document.createElement("p");
     titel.id = "titelVraag";
     titel.innerText = `${postDB.titel}`;
-    titel.style.color = "black";
+   
     div.appendChild(titel);
 
     const vraag: HTMLParagraphElement | null = document.createElement("p");
