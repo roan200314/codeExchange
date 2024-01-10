@@ -93,3 +93,22 @@ textarea {
     display: flex;
     justify-content: center;
 }
+
+#button_Antwoord {
+    position: relative;
+    left: 10px;
+    top: 10px;
+    height: 57px;
+}
+
+#labelAntwoord {
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
+
+#titelAntwoord {
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
