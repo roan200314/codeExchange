@@ -51,9 +51,11 @@ body {
 }
 
 #tags {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     display: flex;
     margin: 15px;
-    padding-bottom: 15px;
     color: white;
     padding: 14px 20px 14px 19px;
     border-radius: 8px;
@@ -100,14 +102,14 @@ textarea {
 
 #button_Antwoord {
     position: relative;
-    left: 200px;
-    top: 28px;
+    left: -419px;
+    top: 140px;
     height: 57px;
 }
 
 #labelAntwoord {
     position: relative;
-    left: 64px;
+    left: 63px;
     top: 10px;
 }
 
