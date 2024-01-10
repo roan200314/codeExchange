@@ -44,6 +44,8 @@ body {
     font-size: 25px;
     padding-bottom: 41px;
     color: white;
+    position: relative;
+    left: 66px;
 }
 
 #vraag {
@@ -109,13 +111,13 @@ textarea {
 
 #labelAntwoord {
     position: relative;
-    left: 63px;
+    left: 129px;
     top: 10px;
 }
 
 #titelAntwoord {
     position: relative;
-    left: 10px;
+    left: 66px;
     top: 10px;
 }
 
