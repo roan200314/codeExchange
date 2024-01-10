@@ -52,7 +52,7 @@ async function setup(): Promise<void> {
                 prefixElement.innerText = prefixText;
                 div.appendChild(prefixElement);
 
-                // Display the match inside a textarea
+                // laat de match zien in de textarea
                 const codeText: string = match.replace(/'''/g, "");
                 const textareaElement: HTMLTextAreaElement = document.createElement("textarea");
                 textareaElement.value = codeText;
@@ -95,7 +95,6 @@ async function setup(): Promise<void> {
         });
     }
     data?.appendChild(div);
-
 }
 
 /**
