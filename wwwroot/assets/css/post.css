@@ -122,5 +122,9 @@ textarea {
 }
 
 .raten {
-    
+    position: relative;
+    display: flex;
+    right: 511px;
+    bottom: 510px;
+    flex-direction: column;
 }
