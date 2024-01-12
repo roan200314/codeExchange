@@ -1,6 +1,9 @@
 
-# Deze functionaliteit stelt gebruikers in staat om hun profielgegevens te bekijken, bewerken en hun profielfoto's te beheren. Hieronder staan de belangrijkste onderdelen.
+# mijngegevens.ts
 
+Deze documentatie gaat over het bestand [mijngegevens.ts](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-a-se-ti/blok-2/kiiruuyoojoo70/-/blob/main/src/mijngegevens.ts?ref_type=heads)
+
+Deze functionaliteit stelt gebruikers in staat om hun profielgegevens te bekijken, bewerken en hun profielfoto's te beheren. Hieronder staan de belangrijkste onderdelen.
 
  ## Gebruikersinterface
 
@@ -253,4 +256,7 @@ deleteButton?.addEventListener("click", async () => {
     // }
 });
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 9ac90815eb1c264c4b319e0d3fb50aa4613f5f2b
