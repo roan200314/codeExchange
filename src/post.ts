@@ -147,8 +147,7 @@ function logout(): void {
     const downvote: HTMLButtonElement = document.getElementById("downvote") as HTMLButtonElement;;
     downvote.addEventListener("click", rating);
 
-    async function rating(): Promise <void> {
-
+    async function rating(userid: number): Promise <void> {
 
     const cijfer: any = document.getElementById("cijfer");
     let counter: any = 0;
@@ -156,10 +155,13 @@ function logout(): void {
     if (cijfer) {
         if (this.id === "upvote") {
             counter++;
-
+            console.log(cijfer);
+            await runQuery("INSERT INTO rating (post_id, user_id, rating) VALUES (?)", [id, userid, cijfer]);
+            // await runQuery("UPDATE rating SET rating = ?", [counter]);
         }
         if (this.id === "downvote") {
             counter--;
+            // await runQuery("UPDATE rating SET rating = ?", [counter]);
         }
     }
     cijfer.innerText = counter.toString();

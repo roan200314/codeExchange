@@ -1,6 +1,5 @@
 # Welkom
 
-Welkom op jouw Portfolio-website! Hier kan je met de wereld delen wat jij allemaal kan en wat je hebt gedaan.
 
 We zijn met een Code Exchange website bezig.
 Dit project houdt in dat Roan en Erdem een website aan het maken zijn die ervoor zorgt dat HBO ICT studenten online code kunnen delen dankzij een forum.
@@ -25,9 +24,9 @@ async function laatZien(): Promise<void> {
 
 </details>
 <details>
-<summary>laatZien(): forEach statement</summary>
+<summary>laatZien():  forEach statement</summary>
 <code>
-```javascript
+```javascript 
     // De gegevens weergeven in de div
     if (posts && posts.length > 0) {
         posts.forEach((post: any) => {
