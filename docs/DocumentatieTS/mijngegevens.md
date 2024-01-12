@@ -256,3 +256,7 @@ deleteButton?.addEventListener("click", async () => {
     // }
 });
 ```
+<<<<<<< HEAD
+</details>
+=======
+>>>>>>> 9ac90815eb1c264c4b319e0d3fb50aa4613f5f2b
