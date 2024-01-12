@@ -45,7 +45,7 @@ async function setup(): Promise<void> {
                 const startIndex: number = vraagText.indexOf(match, lastIndex);
                 const prefixText: string = vraagText.substring(lastIndex, startIndex);
 
-                // Display text before the match
+                // laat de text zien voor de scan
                 const prefixElement: HTMLSpanElement = document.createElement("span");
                 prefixElement.id = "vraagTop";
                 prefixElement.style.color = "black";
@@ -136,6 +136,18 @@ function logout(): void {
 
         // Stuur de gebruiker door naar de login pagina
         url.redirect("login.html");
+    }
+}
+
+function rating(): void {
+    const upvote: HTMLButtonElement = document.getElementsByClassName("upvote");
+    upvote.addEventListener("click", rating);
+    const downvote: HTMLButtonElement = document.getElementsByClassName("downvote");
+    downvote.addEventListener("click", rating);
+    const cijfer: HTMLButtonElement = document.getElementsByClassName("cijfer");
+
+    if (upvote) {
+        cijfer.innerText + 1;
     }
 }
 
