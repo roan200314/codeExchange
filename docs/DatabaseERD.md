@@ -1,1 +1,1 @@
-![erd](../docs/databERD.png);
+![erd](../docs/images/CodeXChange/databERD.png);
