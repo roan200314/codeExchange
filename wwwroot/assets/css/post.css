@@ -70,10 +70,12 @@ body {
 
 #vraagTop {
     display: flex;
+    color: white;
 }
 
 #vraagBottom {
     display: flex;
+    color: white;
 }
 
 textarea {

@@ -48,7 +48,7 @@ async function setup(): Promise<void> {
                 // Display text before the match
                 const prefixElement: HTMLSpanElement = document.createElement("span");
                 prefixElement.id = "vraagTop";
-                prefixElement.style.color = "black";
+                
                 prefixElement.innerText = prefixText;
                 div.appendChild(prefixElement);
 
@@ -67,7 +67,7 @@ async function setup(): Promise<void> {
             const textVraag: string = vraagText.substring(lastIndex);
             const element: HTMLSpanElement = document.createElement("span");
             element.id = "vraagBottom";
-            element.style.color = "black";
+            
             element.innerText = textVraag;
             div.appendChild(element);
         } else {
