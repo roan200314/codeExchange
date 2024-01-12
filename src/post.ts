@@ -3,12 +3,14 @@ import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
 import { runQuery } from "./utils/queryutil";
 
-async function setup(): Promise<void> {
-    document.querySelector(".logout-btn")?.addEventListener("click", logout);
+const currentURL: string = window.location.href;
+const IdOphalen: URL = new URL(currentURL);
+let id: string | null = IdOphalen.searchParams.get("id");
+const raten: any[] | undefined = await runQuery("SELECT * FROM rating WHERE post_id = (?)", [id]);
 
-    const currentURL: string = window.location.href;
-    const IdOphalen: URL = new URL(currentURL);
-    let id: string | null = IdOphalen.searchParams.get("id");
+async function setup(): Promise<void> {
+
+    document.querySelector(".logout-btn")?.addEventListener("click", logout);
 
     const posts: any[] | undefined = await runQuery("SELECT * FROM posts WHERE id = (?)", [id]);
     const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers WHERE vraag_id = (?)", [id]);
@@ -139,16 +141,28 @@ function logout(): void {
     }
 }
 
-function rating(): void {
-    const upvote: HTMLButtonElement = document.getElementsByClassName("upvote");
-    upvote.addEventListener("click", rating);
-    const downvote: HTMLButtonElement = document.getElementsByClassName("downvote");
-    downvote.addEventListener("click", rating);
-    const cijfer: HTMLButtonElement = document.getElementsByClassName("cijfer");
 
-    if (upvote) {
-        cijfer.innerText + 1;
+    const upvote: HTMLButtonElement = document.getElementById("upvote") as HTMLButtonElement;;
+    upvote.addEventListener("click", rating);
+    const downvote: HTMLButtonElement = document.getElementById("downvote") as HTMLButtonElement;;
+    downvote.addEventListener("click", rating);
+
+    async function rating(): Promise <void> {
+
+
+    const cijfer: any = document.getElementById("cijfer");
+    let counter: any = 0;
+
+    if (cijfer) {
+        if (this.id === "upvote") {
+            counter++;
+
+        }
+        if (this.id === "downvote") {
+            counter--;
+        }
     }
+    cijfer.innerText = counter.toString();
 }
 
 setup();

@@ -8,7 +8,7 @@ Dit project houdt in dat Roan en Erdem een website aan het maken zijn die ervoor
 <details>
   <summary>laatZien(): gegevens ophalen</summary>
 
-
+```javascript
 //////////vragen op scherm laten zien
 // Het element waarin de gegevens worden weergegeven selecteren
 const data: HTMLElement | null = document.getElementById("data");
@@ -18,7 +18,7 @@ async function laatZien(): Promise<void> {
     const posts: any[] | undefined = await runQuery("SELECT * FROM posts");
     const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers");
     const users: any[] | undefined = await runQuery("SELECT * FROM user");
-
+```
 
     # in Bovenstaande functie haal ik eerst alle gegevens op uit de database tabellen : 'post', 'answers' en 'user'. 
 </details>
@@ -27,6 +27,7 @@ async function laatZien(): Promise<void> {
 <details>
 <summary>laatZien(): forEach statement</summary>
 <code>
+```javascript
     // De gegevens weergeven in de div
     if (posts && posts.length > 0) {
         posts.forEach((post: any) => {
@@ -40,7 +41,7 @@ Dit doe ik door eerst door Post te loopen en vervolgens door answers.
  </details> 
 <details>
 <summary>laatZien(): checken of het antwoord bij de post hoort.</summary>
-                <code>    // Controleren of het antwoord is gekoppeld aan de huidige vraag
+                <code> ```javascript   // Controleren of het antwoord is gekoppeld aan de huidige vraag
                     if (answer.vraag_id === post.id) {
                         const div: HTMLElement | null = document.createElement("div");
                         div.className = "allepost";</code>
@@ -50,7 +51,7 @@ Hier checkt de if statement of uit de tabel answers de row "vraag.id" gelijk sta
 
 <details>
 <summary>laatZien(): paragrafen aanmaken</summary>
-
+```javascript
                         <code>// Een paragraaf om de naam van het uitje weer te geven
                         const titel: HTMLElement | null = document.createElement("a");
                         titel.id = "postTitel";
