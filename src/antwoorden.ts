@@ -1,6 +1,7 @@
 import "./config";
 import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
+import { Answers } from "./models/answers";
 import { runQuery } from "./utils/queryutil";
 
 const user: User | undefined = await getUserInfo(session.get("user"));
@@ -66,4 +67,34 @@ async function answer(): Promise<void> {
     }
 }
 
+/**
+ * Haal alle gegevens van de gebruiker op uit de database
+ * @param id
+ * @returns user object
+ */
+async function getAnswerInfo(): Promise<Answers | undefined> {
+    try {
+        const data: any = await api.queryDatabase("SELECT * FROM answers WHERE vraag_id = (?) ORDER BY tijd DESC", id);
+        if (data.length > 0) {
+            const answer: Answers = new Answers(
+                data[0]["id"],
+                data[0]["vraag_id"],
+                data[0]["user_id"],
+                data[0]["antwoord"]
+            );
+            return answer;
+        }
+        return undefined;
+    } catch (error) {
+        console.error(error);
 
+        return undefined;
+    }
+}
+const answer2: Answers | undefined = await getAnswerInfo(session.get("answer"));
+console.log(answer2);
+
+async function laatZien(): Promise<void> {
+const div: any = document.createElement("div");
+
+}
