@@ -27,15 +27,28 @@ async function setup(): Promise<void> {
     const titel: HTMLParagraphElement | null = document.createElement("p");
     titel.id = "titelVraag";
     titel.innerText = `${postDB.titel}`;
-   
-    div.appendChild(titel);
+
+    if (antwoorden && antwoorden.length > 0) {
+        const antwoordenContainer: HTMLElement | null = document.getElementById("antwoorden-container");
+
+        antwoorden.forEach((answer: any) => {
+            
+            const answerDiv: HTMLElement = document.createElement("div");
+            answerDiv.className = "answer";
+
+            const answerText: HTMLParagraphElement = document.createElement("p");
+            answerText.innerText = answer.antwoord;   // Adjusted here
+            answerDiv.appendChild(answerText);
+
+            antwoordenContainer?.appendChild(answerDiv);
+        });
+    }
 
     const vraag: HTMLParagraphElement | null = document.createElement("p");
     vraag.id = "vraag";
     vraag.innerText = `${postDB.vraag}`;
     vraag.style.color = "black";
 
-    // Check voor 3 qoutes on vervolgens een textarea te zetten voor die match.
     const vraagText: string | null = vraag.innerText;
     if (vraagText) {
         const codeCheck: RegExpMatchArray | null = vraagText.match(/'''([^']+?)'''/g);
@@ -47,63 +60,53 @@ async function setup(): Promise<void> {
                 const startIndex: number = vraagText.indexOf(match, lastIndex);
                 const prefixText: string = vraagText.substring(lastIndex, startIndex);
 
-                // laat de text zien voor de scan
                 const prefixElement: HTMLSpanElement = document.createElement("span");
                 prefixElement.id = "vraagTop";
-                
+
                 prefixElement.innerText = prefixText;
                 div.appendChild(prefixElement);
 
-                // laat de match zien in de textarea
                 const codeText: string = match.replace(/'''/g, "");
                 const textareaElement: HTMLTextAreaElement = document.createElement("textarea");
                 textareaElement.value = codeText;
                 textareaElement.disabled = "true";
                 div.appendChild(textareaElement);
 
-                // Update lastIndex
                 lastIndex = startIndex + match.length;
             });
 
-            // de rest van de tekst laten zien
             const textVraag: string = vraagText.substring(lastIndex);
             const element: HTMLSpanElement = document.createElement("span");
             element.id = "vraagBottom";
-            
+
             element.innerText = textVraag;
             div.appendChild(element);
         } else {
-            // als geen 3 qoutes zijn tekst laten zien.
             const vraagElement: HTMLSpanElement = document.createElement("span");
             vraagElement.innerText = vraagText;
             div.appendChild(vraagElement);
         }
     }
+
     const tags: HTMLElement | null = document.createElement("p");
     tags.innerText = `${postDB.tags}`;
     tags.style.color = "black";
 
-    // split de tekst
     const tagsText: string | null = tags.innerText;
     if (tagsText) {
-        const tagArray: string[] = tagsText.split(","); // Split de string naar array
+        const tagArray: string[] = tagsText.split(",");
 
-        // maak nieuwe html tags en voeg ze toe aan de div
         tagArray.forEach((tag) => {
             const tagElement: any = document.createElement("span");
             tagElement.id = "tags";
-            tagElement.innerText = tag.trim(); // whitespaces weghalen.
+            tagElement.innerText = tag.trim();
             div.appendChild(tagElement);
         });
     }
+
     data?.appendChild(div);
 }
 
-/**
- * Haal alle gegevens van de gebruiker op uit de database
- * @param id
- * @returns user object
- */
 async function getUserInfo(userid: number): Promise<User | undefined> {
     console.log(userid);
     try {
@@ -125,30 +128,24 @@ async function getUserInfo(userid: number): Promise<User | undefined> {
         return undefined;
     } catch (error) {
         console.error(error);
-
         return undefined;
     }
 }
 
 function logout(): void {
-    // Verwijder de sessies
     const uitloggen: any = confirm("Weet u zeker dat u wilt uitloggen?");
     if (uitloggen === true) {
         session.remove("user");
-
-        // Stuur de gebruiker door naar de login pagina
         url.redirect("login.html");
     }
 }
 
+const upvote: HTMLButtonElement = document.getElementById("upvote") as HTMLButtonElement;
+upvote.addEventListener("click", rating);
+const downvote: HTMLButtonElement = document.getElementById("downvote") as HTMLButtonElement;
+downvote.addEventListener("click", rating);
 
-    const upvote: HTMLButtonElement = document.getElementById("upvote") as HTMLButtonElement;;
-    upvote.addEventListener("click", rating);
-    const downvote: HTMLButtonElement = document.getElementById("downvote") as HTMLButtonElement;;
-    downvote.addEventListener("click", rating);
-
-    async function rating(userid: number): Promise <void> {
-
+async function rating(userid: number): Promise<void> {
     const cijfer: any = document.getElementById("cijfer");
     let counter: any = 0;
 
@@ -157,11 +154,9 @@ function logout(): void {
             counter++;
             console.log(cijfer);
             await runQuery("INSERT INTO rating (post_id, user_id, rating) VALUES (?)", [id, userid, cijfer]);
-            // await runQuery("UPDATE rating SET rating = ?", [counter]);
         }
         if (this.id === "downvote") {
             counter--;
-            // await runQuery("UPDATE rating SET rating = ?", [counter]);
         }
     }
     cijfer.innerText = counter.toString();

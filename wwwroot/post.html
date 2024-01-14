@@ -45,6 +45,7 @@
         <div class="positieDiv">
             <div id="data"></div>
         </div>
+        
         <div class="antwoordOpVraag">
             <div class="antwoord">
                 <div id="titelform" class="mb-3">
@@ -55,17 +56,22 @@
                         id="titelAntwoord"
                         placeholder="Vul hier uw antwoord in"
                     />
+                    
                 </div>
                 <div class="raten">
                     <button id="upvote">^</button>
                     <p id="cijfer">0</p>
                     <button id="downvote">v</button>
+                    
                 </div>
                 <button id="button_Antwoord" type="button" class="btn btn-primary" onclick="zetIn()">
                     Stuur antwoord op
                 </button>
+                <div id="antwoorden-container"></div>
             </div>
+            
         </div>
+        
     </body>
     <script src="../src/post.ts" type="module" async></script>
     <script src="../src/antwoorden.ts" type="module" async></script>
