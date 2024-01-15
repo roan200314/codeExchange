@@ -31,13 +31,22 @@ async function setup(): Promise<void> {
     if (antwoorden && antwoorden.length > 0) {
         const antwoordenContainer: HTMLElement | null = document.getElementById("antwoorden-container");
 
-        antwoorden.forEach((answer: any) => {
-            
+        antwoorden.forEach(async (answer: any) => {
             const answerDiv: HTMLElement = document.createElement("div");
             answerDiv.className = "answer";
 
+            // Fetch the username based on user ID
+            const user: User | undefined = await getUserInfo(answer.user_id);
+
+            // Display username above the answer
+            if (user) {
+                const usernameElement: HTMLParagraphElement = document.createElement("p");
+                usernameElement.innerText = `User: ${user.username}`;
+                answerDiv.appendChild(usernameElement);
+            }
+
             const answerText: HTMLParagraphElement = document.createElement("p");
-            answerText.innerText = answer.antwoord;   // Adjusted here
+            answerText.innerText = `Answer: ${answer.antwoord}`;
             answerDiv.appendChild(answerText);
 
             antwoordenContainer?.appendChild(answerDiv);

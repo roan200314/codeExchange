@@ -129,7 +129,7 @@ textarea {
     flex-direction: column;
 
 }
-.answer{
+.answer {
     position: relative;
     justify-content: center;
     border-style: solid;
@@ -138,8 +138,7 @@ textarea {
     padding: 10px;
     width: 800px;
     background-color: #21262a;
-   
-    
+    margin-bottom: 40px;
 }
 .antwoordOpVraag {
     display: flex;
