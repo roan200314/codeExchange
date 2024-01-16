@@ -1,8 +1,12 @@
 # Welkom
 
-
 We zijn met een Code Exchange website bezig.
 Dit project houdt in dat Roan en Erdem een website aan het maken zijn die ervoor zorgt dat HBO ICT studenten online code kunnen delen dankzij een forum.
+
+Met onderstaande link hebben we gekeken of de kleuren goed samen gaan voor de klanten
+https://dequeuniversity.com/rules/axe/4.7/color-contrast
+
+![colorCheck](../docs/images/colorCheck.png);
 
 <details>
   <summary>laatZien(): gegevens ophalen</summary>
@@ -19,7 +23,8 @@ async function laatZien(): Promise<void> {
     const users: any[] | undefined = await runQuery("SELECT * FROM user");
 ```
 
-    # in Bovenstaande functie haal ik eerst alle gegevens op uit de database tabellen : 'post', 'answers' en 'user'. 
+    # in Bovenstaande functie haal ik eerst alle gegevens op uit de database tabellen : 'post', 'answers' en 'user'.
+
 </details>
 
 </details>
@@ -58,6 +63,7 @@ Hier checkt de if statement of uit de tabel answers de row "vraag.id" gelijk sta
                         titel.textContent = `${post.titel}`;
 
                         // Een paragraaf om de prijs van het uitje weer te geven
+
 <details>
 <summary>laatZien(): tekst verkorten
 
@@ -67,6 +73,7 @@ Hier checkt de if statement of uit de tabel answers de row "vraag.id" gelijk sta
                         vraag.textContent = `Vraag: ${vraagVerkort}` ;
                         vraag.style.marginLeft = "10px";
                         vraag.style.color = "black";
+
 </details>
                         // Extra code gebaseerd op antwoorden
                         const antwoorden: HTMLElement | null = document.createElement("p");
@@ -92,7 +99,9 @@ Hier checkt de if statement of uit de tabel answers de row "vraag.id" gelijk sta
                         datum.textContent = `datum van vraag: ${post.tijd}`;
                         datum.style.marginLeft = "10px";
                         datum.style.color = "black";</code>
-In bovenstaande functie maakt die paragrafen aan met de gegevens die in de database staan.                        
+
+In bovenstaande functie maakt die paragrafen aan met de gegevens die in de database staan.
+
 </details>
 
                         // De knoppen en paragrafen aan de div toevoegen
@@ -110,11 +119,10 @@ In bovenstaande functie maakt die paragrafen aan met de gegevens die in de datab
             }
         });
     }
+
 }
 
 laatZien();
-
-
 
 daarna heb ik een 'const vraagVerkort'aangemaakt. Hierin heb ik een functie gemaakt waardoor als een vraag die meer dan 100 tekens heeft verkort wordt en dan niet volledig te zien is.
 
@@ -123,4 +131,3 @@ vervolgens maak ik een div aan om alle gegevens erin te stoppen.
 daarna komen alle paragrafen waar ik gegevens in kan zetten van de vragen en antwoorden.
 
 vervolgens assign ik alles aan de div en komt het op het scherm.
-
