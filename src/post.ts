@@ -23,39 +23,13 @@ async function setup(): Promise<void> {
 
     const data: HTMLElement | null = document.getElementById("data");
     const div: HTMLElement | null = document.createElement("div");
+    div.id = "postDiv";
 
     const titel: HTMLParagraphElement | null = document.createElement("p");
     titel.id = "titelVraag";
     titel.innerText = `${postDB.titel}`;
+    div.appendChild(titel);
 
-    if (antwoorden && antwoorden.length > 0) {
-        const antwoordenContainer: HTMLElement | null = document.getElementById("antwoorden-container");
-
-        antwoorden.forEach(async (answer: any) => {
-            const answerDiv: HTMLElement = document.createElement("div");
-            answerDiv.className = "answer";
-
-            // Fetch the username based on user ID
-            const user: User | undefined = await getUserInfo(answer.user_id);
-
-            // Display username above the answer
-            if (user) {
-                const usernameElement: HTMLParagraphElement = document.createElement("p");
-                usernameElement.innerText = `User: ${user.username}`;
-                answerDiv.appendChild(usernameElement);
-            }
-
-            const answerText: HTMLParagraphElement = document.createElement("p");
-            answerText.innerText = `Answer: ${answer.antwoord}`;
-            answerDiv.appendChild(answerText);
-
-            const answerTime: HTMLParagraphElement = document.createElement("p");
-            answerTime.innerText = `tijd: ${answer.tijd}`;
-            answerDiv.appendChild(answerTime);
-
-            antwoordenContainer?.appendChild(answerDiv);
-        });
-    }
 
     const vraag: HTMLParagraphElement | null = document.createElement("p");
     vraag.id = "vraag";
