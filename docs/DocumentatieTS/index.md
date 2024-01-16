@@ -6,7 +6,7 @@ Dit project houdt in dat Roan en Erdem een website aan het maken zijn die ervoor
 Met onderstaande link hebben we gekeken of de kleuren goed samen gaan voor de klanten
 https://dequeuniversity.com/rules/axe/4.7/color-contrast
 
-![colorCheck](../docs/images/colorCheck.png);
+![colorCheck](../images/CodeXChange/colorCheck.png);
 
 <details>
   <summary>laatZien(): gegevens ophalen</summary>
