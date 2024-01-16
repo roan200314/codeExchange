@@ -49,6 +49,10 @@ async function setup(): Promise<void> {
             answerText.innerText = `Answer: ${answer.antwoord}`;
             answerDiv.appendChild(answerText);
 
+            const answerTime: HTMLParagraphElement = document.createElement("p");
+            answerTime.innerText = `tijd: ${answer.tijd}`;
+            answerDiv.appendChild(answerTime);
+
             antwoordenContainer?.appendChild(answerDiv);
         });
     }
