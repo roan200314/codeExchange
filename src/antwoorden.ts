@@ -96,5 +96,34 @@ console.log(answer2);
 
 async function laatZien(): Promise<void> {
 const div: any = document.createElement("div");
+if (antwoorden && antwoorden.length > 0) {
+    const antwoordenContainer: HTMLElement | null = document.getElementById("antwoorden-container");
+
+    antwoorden.forEach(async (answer: any) => {
+        const answerDiv: HTMLElement = document.createElement("div");
+        answerDiv.className = "answer";
+
+        // Fetch the username based on user ID
+        const user: User | undefined = await getUserInfo(answer.user_id);
+
+        // Display username above the answer
+        if (user) {
+            const usernameElement: HTMLParagraphElement = document.createElement("p");
+            usernameElement.innerText = `User: ${user.username}`;
+            answerDiv.appendChild(usernameElement);
+        }
+
+        const answerText: HTMLParagraphElement = document.createElement("p");
+        answerText.innerText = `Answer: ${answer.antwoord}`;
+        answerDiv.appendChild(answerText);
+
+        const answerTime: HTMLParagraphElement = document.createElement("p");
+        answerTime.innerText = `tijd: ${answer.tijd}`;
+        answerDiv.appendChild(answerTime);
+
+        antwoordenContainer?.appendChild(answerDiv);
+    });
+}
 
 }
+laatZien();
