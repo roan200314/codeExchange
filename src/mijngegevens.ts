@@ -36,8 +36,8 @@ async function setUserValues(): Promise<void> {
         const userExpertiseElement: HTMLElement | null = document.getElementById("userExpertise");
         const userYearsOfExperienceElement: HTMLElement | null =
             document.getElementById("userYearsOfExperience");
-        const userProfilePictureElement: HTMLImageElement | null =
-            document.getElementById("userProfilePicture");
+        // const userProfilePictureElement: HTMLImageElement | null =
+        //     document.getElementById("userProfilePicture");
 
         if (userNameElement) userNameElement.textContent = user.firstname + " " + user.lastname;
         if (userUsernameElement) userUsernameElement.textContent = user.username;
@@ -48,7 +48,7 @@ async function setUserValues(): Promise<void> {
         }
         if (userExpertiseElement) userExpertiseElement.textContent = user.expertise;
         if (userYearsOfExperienceElement) userYearsOfExperienceElement.textContent = user.years_experience;
-        if (userProfilePictureElement) userProfilePictureElement.src = user.profile_picture;
+        // if (userProfilePictureElement) userProfilePictureElement.src = user.profile_picture;
     }
 }
 
@@ -86,34 +86,35 @@ editButton.addEventListener("click", toggleEditMode);
 
 saveButton.addEventListener("click", async (): Promise<void> => {
     try {
-        // Get the edited values from the input fields
-        const editedName: HTMLInputElement | null = document.getElementById("userName") as HTMLInputElement;
-        const editedUsername: HTMLInputElement | null = document.getElementById("userUsername") as HTMLInputElement;
-        const editeduserEmail: HTMLInputElement | null = document.getElementById("userEmail") as HTMLInputElement;
-        const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience") as HTMLInputElement;
-        const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise") as HTMLInputElement;
-        const editedGeboortedatum: HTMLInputElement | null = document.getElementById("userGeboortedatum") as HTMLInputElement;
+        const editedUsername: HTMLSpanElement | null = document.getElementById("userUsername") as HTMLSpanElement;
+        const editeduserEmail: HTMLSpanElement | null = document.getElementById("userEmail") as HTMLSpanElement;
+        const editedJaarervaring: HTMLSpanElement | null = document.getElementById("userYearsOfExperience") as HTMLSpanElement;
+        const editedExpertise: HTMLSpanElement | null = document.getElementById("userExpertise") as HTMLSpanElement;
+        const editedGeboortedatum: HTMLInputElement | null = document.getElementById("geboortedatum") as HTMLInputElement;
+        
+        // Now you can access the values using the 'innerText' and 'value' properties
+        const usernameValue: string = editedUsername.innerText || "";
 
-        // Now you can access the values using the 'value' property
-        const nameValue: string = editedName?.textContent || "";
-        const usernameValue: string = editedUsername?.textContent || "";
-        const userEmailValue: string = editeduserEmail?.textContent || "";
-        const jaarervaringValue: string = editedJaarervaring?.textContent || "";
-        const expertiseValue: string = editedExpertise?.textContent || "";
-        const geboortedatumValue: string = editedGeboortedatum?.value || "";
+        const userEmailValue: string = editeduserEmail.innerText || "";
+        const jaarervaringValue: string = editedJaarervaring.innerText || "";
+        const expertiseValue: string = editedExpertise.innerText || "";
+        const geboortedatumValue: string = editedGeboortedatum.value || "";
+        
 
-        console.log(geboortedatumValue);
+        console.log(jaarervaringValue);
 
 
         // Perform validation and handle empty values if needed
 
         const userId: number | undefined = session.get("user");
     
+
             // Update the database with the new values
-            const updateResult: any = await runQuery(
-                "UPDATE user SET username = ?, email = ?, firstname = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
-                [usernameValue, userEmailValue, nameValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId]
-            );
+            const updateResult: any = await api.queryDatabase(
+                "UPDATE user SET username = ?, email = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
+                usernameValue, userEmailValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId
+                );
+            console.log("SQL Query:", "UPDATE user SET username = ?, email = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?", [usernameValue, userEmailValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId]);
 
             console.log("Update Result:", updateResult);
 
@@ -132,21 +133,21 @@ saveButton.addEventListener("click", async (): Promise<void> => {
 });
 
 
-// Add event listener to the profile picture for opening file input
-const userProfilePicture: HTMLImageElement = document.getElementById(
-    "userProfilePicture"
-) as HTMLImageElement;
-userProfilePicture.addEventListener("click", () => {
-    profilePictureInput.click();
-});
+// // Add event listener to the profile picture for opening file input
+// const userProfilePicture: HTMLImageElement = document.getElementById(
+//     "userProfilePicture"
+// ) as HTMLImageElement;
+// userProfilePicture.addEventListener("click", () => {
+//     profilePictureInput.click();
+// });
 
-// Add event listener to the file input for handling file selection
-profilePictureInput.addEventListener("change", async (): Promise<void> => {
-    const selectedFile: File | undefined = profilePictureInput.files?.[0];
+// // Add event listener to the file input for handling file selection
+// profilePictureInput.addEventListener("change", async (): Promise<void> => {
+//     const selectedFile: File | undefined = profilePictureInput.files?.[0];
 
-    if (selectedFile) {
-    }
-});
+//     if (selectedFile) {
+//     }
+// });
 const deleteButton: HTMLButtonElement | null = document.getElementById(
     "deleteButton"
 ) as HTMLButtonElement | null;
