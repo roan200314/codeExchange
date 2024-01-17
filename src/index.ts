@@ -18,8 +18,6 @@ async function setup(): Promise<void> {
     const user: User | undefined = await getUserInfo(session.get("user"));
 
     const post: Post | undefined = await getPostInfo(session.get("post"));
-
-    console.log(post);
 }
 
 /**

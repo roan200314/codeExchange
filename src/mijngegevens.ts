@@ -85,47 +85,52 @@ setUserValues();
 editButton.addEventListener("click", toggleEditMode);
 
 saveButton.addEventListener("click", async (): Promise<void> => {
-    // Get the edited values from the input fields
-    const editedName: HTMLInputElement | null = document.getElementById("userName") as HTMLInputElement;
-    const editedUsername: HTMLInputElement | null = document.getElementById("userUsername") as HTMLInputElement;
-    const editeduserEmail: HTMLInputElement | null = document.getElementById("userEmail") as HTMLInputElement;
-    const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience") as HTMLInputElement;
-    const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise") as HTMLInputElement;
-    const editedGeboortedatum: HTMLInputElement | null = document.getElementById("userGeboortedatum") as HTMLInputElement;
+    try {
+        // Get the edited values from the input fields
+        const editedName: HTMLInputElement | null = document.getElementById("userName") as HTMLInputElement;
+        const editedUsername: HTMLInputElement | null = document.getElementById("userUsername") as HTMLInputElement;
+        const editeduserEmail: HTMLInputElement | null = document.getElementById("userEmail") as HTMLInputElement;
+        const editedJaarervaring: HTMLInputElement | null = document.getElementById("userYearsOfExperience") as HTMLInputElement;
+        const editedExpertise: HTMLInputElement | null = document.getElementById("userExpertise") as HTMLInputElement;
+        const editedGeboortedatum: HTMLInputElement | null = document.getElementById("userGeboortedatum") as HTMLInputElement;
 
-    // Now you can access the values using the 'value' property
-    const nameValue: string = editedName?.value || "";
-    const usernameValue: string = editedUsername?.value || "";
-    const userEmailValue: string = editeduserEmail?.value || "";
-    const jaarervaringValue: string = editedJaarervaring?.value || "";
-    const expertiseValue: string = editedExpertise?.value || "";
-    const geboortedatumValue: string = editedGeboortedatum?.value || "";
+        // Now you can access the values using the 'value' property
+        const nameValue: string = editedName?.textContent || "";
+        const usernameValue: string = editedUsername?.textContent || "";
+        const userEmailValue: string = editeduserEmail?.textContent || "";
+        const jaarervaringValue: string = editedJaarervaring?.textContent || "";
+        const expertiseValue: string = editedExpertise?.textContent || "";
+        const geboortedatumValue: string = editedGeboortedatum?.value || "";
 
-    // Perform validation and handle empty values if needed
+        console.log(geboortedatumValue);
 
-    const userId: number | undefined = session.get("user");
 
-    if (
-        userId !== undefined &&
-        jaarervaringValue !== null &&
-        expertiseValue !== null &&
-        nameValue !== null &&
-        userEmailValue !== null &&
-        geboortedatumValue !== null &&
-        usernameValue !== null
-    ) {
-        // Update the database with the new values
-        await runQuery(
-            "UPDATE user SET username = ?, email = ?, firstname = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
-            [usernameValue, userEmailValue, nameValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId]
-        );
+        // Perform validation and handle empty values if needed
+
+        const userId: number | undefined = session.get("user");
+    
+            // Update the database with the new values
+            const updateResult: any = await runQuery(
+                "UPDATE user SET username = ?, email = ?, firstname = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
+                [usernameValue, userEmailValue, nameValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId]
+            );
+
+            console.log("Update Result:", updateResult);
+
+            if (updateResult && updateResult.affectedRows > 0) {
+                // Success message or further actions if needed
+                console.log("Update successful");
+            } else {
+                console.error("Update failed. No rows affected.");
+            }
         
-        
-        
+
+        toggleEditMode();
+    } catch (error) {
+        console.error("Error during update:", error);
     }
-
-    toggleEditMode();
 });
+
 
 // Add event listener to the profile picture for opening file input
 const userProfilePicture: HTMLImageElement = document.getElementById(
@@ -191,4 +196,11 @@ deleteButton?.addEventListener("click", async () => {
     //     // User canceled the deletion
     //     console.log("Account deletion canceled");
     // }
+
 });
+
+
+const vragen: any[] | undefined = await runQuery("SELECT * FROM posts WHERE user_id = (?) ORDER BY tijd DESC", user?.id);
+console.log(user);
+
+console.log(vragen);
