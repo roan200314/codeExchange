@@ -145,14 +145,14 @@ async function laatZien(): Promise<void> {
                 const vraagVerkort: string = post.vraag.length > 100 ? post.vraag.substring(0, 100) + "..." : post.vraag;
                 vraag.textContent = `Vraag: ${vraagVerkort}`;
                 vraag.style.marginLeft = "10px";
-                vraag.style.color = "black";
+                
     
                 // Een paragraaf om het aantal antwoorden weer te geven
                 const antwoordenParagraaf: HTMLElement | null = document.createElement("p");
                 antwoordenParagraaf.id = "answerText";
                 antwoordenParagraaf.textContent = `Antwoorden: ${numberOfAnswers}`;
                 antwoordenParagraaf.style.marginLeft = "10px";
-                antwoordenParagraaf.style.color = "black";
+
     
                 // Gebruikersinformatie op basis van user_id
                 const user: User | undefined = users.find((u: User) => u.id === post.user_id);
@@ -163,14 +163,14 @@ async function laatZien(): Promise<void> {
                 naam.id = "postNaam";
                 naam.textContent = `Naam van vraagsteller: ${userName}`;
                 naam.style.marginLeft = "10px";
-                naam.style.color = "black";
+                
     
                 // Een paragraaf om het tijdstip van de vraag weer te geven
                 const datum: HTMLElement | null = document.createElement("p");
                 datum.id = "postTijd";
                 datum.textContent = `Datum van vraag: ${post.tijd}`;
                 datum.style.marginLeft = "10px";
-                datum.style.color = "black";
+                
     
                 // Voeg knoppen en paragrafen toe aan de div
                 div.appendChild(titel);
