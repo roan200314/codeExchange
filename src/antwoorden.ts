@@ -94,7 +94,6 @@ async function getAnswerInfo(): Promise<Answers | undefined> {
 const answer2: Answers | undefined = await getAnswerInfo(session.get("answer"));
 console.log(answer2);
 
-async function laatZien(): Promise<void> {
 const div: any = document.createElement("div");
 if (antwoorden && antwoorden.length > 0) {
     const antwoordenContainer: HTMLElement | null = document.getElementById("antwoorden-container");
@@ -125,5 +124,3 @@ if (antwoorden && antwoorden.length > 0) {
     });
 }
 
-}
-laatZien();

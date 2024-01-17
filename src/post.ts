@@ -128,25 +128,28 @@ function logout(): void {
 }
 
 const upvote: HTMLButtonElement = document.getElementById("upvote") as HTMLButtonElement;
-upvote.addEventListener("click", rating);
 const downvote: HTMLButtonElement = document.getElementById("downvote") as HTMLButtonElement;
-downvote.addEventListener("click", rating);
 
-async function rating(userid: number): Promise<void> {
-    const cijfer: any = document.getElementById("cijfer");
-    let counter: any = 0;
+// Assuming you have a variable 'userid' defined somewhere
+// const user_id: any = await getUserInfo(userid);
 
-    if (cijfer) {
-        if (this.id === "upvote") {
-            counter++;
-            console.log(cijfer);
-            await runQuery("INSERT INTO rating (post_id, user_id, rating) VALUES (?)", [id, userid, cijfer]);
-        }
-        if (this.id === "downvote") {
-            counter--;
-        }
+upvote.addEventListener("click", () => rating(user_id, 1)); // Assuming 1 represents an upvote
+downvote.addEventListener("click", () => rating(user_id, -1)); // Assuming -1 represents a downvote
+
+
+async function rating(ratingValue: number, userid: number): Promise<void> {
+    const cijferElement: HTMLDivElement | null = document.getElementById("cijfer") as HTMLDivElement;
+
+    if (cijferElement) {
+        let counter: number = parseInt(cijferElement?.innerText || "0");
+
+        // Assuming you have a variable 'id' defined somewhere
+        await runQuery("INSERT INTO rating (post_id, user_id, rating) VALUES (?, ?, ?)", [id, userid, ratingValue]);
+
+        counter += ratingValue;
+        cijferElement.innerText = counter.toString();
     }
-    cijfer.innerText = counter.toString();
 }
+
 
 setup();
