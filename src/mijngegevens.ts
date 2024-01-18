@@ -4,6 +4,7 @@ import "./config";
 import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
 import { Post } from "./models/post";
+import { Answers } from "./models/answers";
 
 const editButton: HTMLButtonElement = document.getElementById("editButton") as HTMLButtonElement;
 const saveButton: HTMLButtonElement = document.getElementById("saveButton") as HTMLButtonElement;
