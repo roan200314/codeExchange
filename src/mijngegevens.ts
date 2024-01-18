@@ -226,7 +226,35 @@ if (vragen && vragen.length > 0) {
             console.log(post);
     });
 }
+// Get user's answers
+const antwoorden: any[] | undefined = await runQuery("SELECT * FROM answers WHERE user_id = ? ORDER BY id DESC", user?.id);
 
+if (antwoorden && antwoorden.length > 0) {
+    // For each answer in the list of answers
+    antwoorden.forEach((answer: Answers) => {
+
+        const div: HTMLElement | null = document.createElement("div");
+        div.className = "alleantwoorden";
+
+        // Display the question title (you may need to fetch the question title from the associated post)
+        const vraagTitel: HTMLElement | null = document.createElement("h3");
+        vraagTitel.textContent = `Vraag Titel: ${answer.vraag_id}`; // You may need to fetch the question title here
+        vraagTitel.style.marginLeft = "10px";
+
+        // Display the answer
+        const antwoord: HTMLElement | null = document.createElement("p");
+        antwoord.id = "antwoord";
+        antwoord.textContent = `Antwoord: ${answer.antwoord}`;
+        antwoord.style.marginLeft = "10px";
+
+        // Add elements to the div
+        div.appendChild(vraagTitel);
+        div.appendChild(antwoord);
+        data?.appendChild(div);
+
+        console.log(answer);
+    });
+}
 
 function logout(): void {
     // Verwijder de sessies
