@@ -3,6 +3,7 @@ import { runQuery } from "./utils/queryutil";
 import "./config";
 import { api, session, url } from "@hboictcloud/api";
 import { User } from "./models/user";
+import { Post } from "./models/post";
 
 const editButton: HTMLButtonElement = document.getElementById("editButton") as HTMLButtonElement;
 const saveButton: HTMLButtonElement = document.getElementById("saveButton") as HTMLButtonElement;
@@ -94,7 +95,6 @@ saveButton.addEventListener("click", async (): Promise<void> => {
         
         // Now you can access the values using the 'innerText' and 'value' properties
         const usernameValue: string = editedUsername.innerText || "";
-
         const userEmailValue: string = editeduserEmail.innerText || "";
         const jaarervaringValue: string = editedJaarervaring.innerText || "";
         const expertiseValue: string = editedExpertise.innerText || "";
@@ -114,7 +114,6 @@ saveButton.addEventListener("click", async (): Promise<void> => {
                 "UPDATE user SET username = ?, email = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?",
                 usernameValue, userEmailValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId
                 );
-            console.log("SQL Query:", "UPDATE user SET username = ?, email = ?, birth_year = ?, expertise = ?, years_experience = ? WHERE id = ?", [usernameValue, userEmailValue, geboortedatumValue, expertiseValue, jaarervaringValue, userId]);
 
             console.log("Update Result:", updateResult);
 
@@ -133,21 +132,6 @@ saveButton.addEventListener("click", async (): Promise<void> => {
 });
 
 
-// // Add event listener to the profile picture for opening file input
-// const userProfilePicture: HTMLImageElement = document.getElementById(
-//     "userProfilePicture"
-// ) as HTMLImageElement;
-// userProfilePicture.addEventListener("click", () => {
-//     profilePictureInput.click();
-// });
-
-// // Add event listener to the file input for handling file selection
-// profilePictureInput.addEventListener("change", async (): Promise<void> => {
-//     const selectedFile: File | undefined = profilePictureInput.files?.[0];
-
-//     if (selectedFile) {
-//     }
-// });
 const deleteButton: HTMLButtonElement | null = document.getElementById(
     "deleteButton"
 ) as HTMLButtonElement | null;
@@ -200,8 +184,66 @@ deleteButton?.addEventListener("click", async () => {
 
 });
 
+const data: HTMLElement | null = document.getElementById("data");
 
-const vragen: any[] | undefined = await runQuery("SELECT * FROM posts WHERE user_id = (?) ORDER BY tijd DESC", user?.id);
-console.log(user);
+const vragen: any[] | undefined = await runQuery("SELECT * FROM vragen WHERE user_id = (?) ORDER BY tijd DESC", user?.id);
+
+if (vragen && vragen.length > 0) {
+    // Voor elk bericht in de lijst van berichten
+    vragen.forEach((post: Post) => {
+
+
+            const div: HTMLElement | null = document.createElement("div");
+            div.className = "allepost";
+
+            // Een link om de titel van het bericht weer te geven
+            const titel: HTMLElement | null = document.createElement("a");
+            titel.id = "postTitel";
+            titel.href = `post.html?id=${post.id}`;
+            titel.textContent = `${post.titel}`;
+
+            // Een paragraaf om de vraag van het bericht weer te geven
+            const vraag: HTMLElement | null = document.createElement("p");
+            vraag.id = "postVraag";
+            const vraagVerkort: string = post.vraag.length > 100 ? post.vraag.substring(0, 100) + "..." : post.vraag;
+            vraag.textContent = `Vraag: ${vraagVerkort}`;
+            vraag.style.marginLeft = "10px";
+            
+
+            // Een paragraaf om de naam van de vraagsteller weer te geven
+            const naam: HTMLElement | null = document.createElement("p");
+            naam.id = "postNaam";
+            naam.textContent = `Naam van vraagsteller: ${userName}`;
+            naam.style.marginLeft = "10px";
+            
+
+            // Een paragraaf om het tijdstip van de vraag weer te geven
+            const datum: HTMLElement | null = document.createElement("p");
+            datum.id = "postTijd";
+            datum.textContent = `Datum van vraag: ${post.tijd}`;
+            datum.style.marginLeft = "10px";
+            
+
+            // Voeg knoppen en paragrafen toe aan de div
+            div.appendChild(titel);
+            div.appendChild(vraag);
+            div.appendChild(naam);
+            div.appendChild(datum);
+            data?.appendChild(div);
+
+    });
+}
 
 console.log(vragen);
+
+function logout(): void {
+    // Verwijder de sessies
+    const uitloggen: any = confirm("Weet u zeker dat u wilt uitloggen?");
+    if (uitloggen === true) {
+    session.remove("user");
+
+    // Stuur de gebruiker door naar de login pagina
+    url.redirect("login.html");
+    }
+}
+document.querySelector(".logout-btn")?.addEventListener("click", logout);
