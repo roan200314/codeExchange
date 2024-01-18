@@ -57,3 +57,28 @@ body {
     cursor: pointer;
     display: inline-block;
   }
+
+  #data {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
+
+.allepost {
+    position: relative;
+    left: 144px;
+    bottom: 524px;
+    display: flex;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    width: 600px;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    background-color: #21262a;
+}

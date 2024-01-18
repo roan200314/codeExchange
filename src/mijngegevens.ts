@@ -186,12 +186,12 @@ deleteButton?.addEventListener("click", async () => {
 
 const data: HTMLElement | null = document.getElementById("data");
 
-const vragen: any[] | undefined = await runQuery("SELECT * FROM vragen WHERE user_id = (?) ORDER BY tijd DESC", user?.id);
+const vragen: any[] | undefined = await runQuery("SELECT * FROM posts WHERE user_id = (?) ORDER BY tijd DESC", user?.id);
+
 
 if (vragen && vragen.length > 0) {
     // Voor elk bericht in de lijst van berichten
     vragen.forEach((post: Post) => {
-
 
             const div: HTMLElement | null = document.createElement("div");
             div.className = "allepost";
@@ -208,14 +208,6 @@ if (vragen && vragen.length > 0) {
             const vraagVerkort: string = post.vraag.length > 100 ? post.vraag.substring(0, 100) + "..." : post.vraag;
             vraag.textContent = `Vraag: ${vraagVerkort}`;
             vraag.style.marginLeft = "10px";
-            
-
-            // Een paragraaf om de naam van de vraagsteller weer te geven
-            const naam: HTMLElement | null = document.createElement("p");
-            naam.id = "postNaam";
-            naam.textContent = `Naam van vraagsteller: ${userName}`;
-            naam.style.marginLeft = "10px";
-            
 
             // Een paragraaf om het tijdstip van de vraag weer te geven
             const datum: HTMLElement | null = document.createElement("p");
@@ -227,14 +219,13 @@ if (vragen && vragen.length > 0) {
             // Voeg knoppen en paragrafen toe aan de div
             div.appendChild(titel);
             div.appendChild(vraag);
-            div.appendChild(naam);
             div.appendChild(datum);
             data?.appendChild(div);
 
+            console.log(post);
     });
 }
 
-console.log(vragen);
 
 function logout(): void {
     // Verwijder de sessies
