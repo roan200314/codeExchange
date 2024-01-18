@@ -1,0 +1,1 @@
+We hebben UML technieken gebruikt om de ontwerpen te laten zien van onze database. Hierdoor is onze herbruikbaarheid veel beter en kunnen nieuwe developers goed mee in stromen in ons project.
