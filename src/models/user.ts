@@ -34,7 +34,7 @@ export class User {
         this._profile_picture = profile_picture;
     }
 
-    // Getters en setters
+    // Getters en setter
     public get id(): number {
         return this._id;
     }
