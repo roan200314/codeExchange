@@ -2,7 +2,7 @@
 
 ## Stop:
 
-
+- We hebben niet echt georganiseerd gewerkt met onze folders in VS, dit kregen we als tip mee van Bas Pijls om het wel te doen.
 
 
 
