@@ -186,7 +186,24 @@ async function laatZien(): Promise<void> {
 }
 laatZien();
 
+const zoek: HTMLButtonElement = document.getElementById("zoekKnop") as HTMLButtonElement;
+
+zoek.addEventListener("click", async (): Promise<void> => {
+
+    const zoekInput: HTMLInputElement = document.getElementById("zoekInhoud") as HTMLInputElement;
+
+        // Zet variabelen gelijk
+        const zoekbalk: string = zoekInput.value;
+
+        await runQuery("SELECT * FROM posts WHERE titel = (?)", [zoekbalk]);
+
+        
+
+
+});
+
 
 
 // Run bij het opstarten de setup functie
 await setup();
+
